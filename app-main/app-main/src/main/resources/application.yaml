@@ -24,8 +24,8 @@ spring:
     password: ${MYSQL_PASS1:1q2w3e4r}
     default.admin.pass: ${DEFAULT_ADMIN_PASS}
 
-mobilele:
-  remember.me.key: ${REMEMBER_ME_KEY:parola}
+api:
+  event.service.url: ${EVENT_SERVICE_URL:http://localhost:8090/api/event}
 
 logging:
   level:

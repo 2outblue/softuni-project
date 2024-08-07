@@ -1,6 +1,5 @@
 package com.ngfrt.appmain.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -30,7 +29,7 @@ public class EventController {
 
         String response = restTemplate.getForObject(eventServiceUrl, String.class);
 
-        //TODO  - this should be done by a service and the gson in the configuration
+        //TODO  - this should be done by a service and the gson in the configuration,
 
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();

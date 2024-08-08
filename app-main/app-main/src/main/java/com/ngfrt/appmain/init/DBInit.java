@@ -1,7 +1,9 @@
 package com.ngfrt.appmain.init;
 
 import com.ngfrt.appmain.model.entity.Hall;
+import com.ngfrt.appmain.model.entity.User;
 import com.ngfrt.appmain.repository.HallRepository;
+import com.ngfrt.appmain.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,17 +14,36 @@ import java.util.UUID;
 @Component
 public class DBInit implements CommandLineRunner {
 
+    private final UserRepository userRepository;
     HallRepository hallRepository;
 
-    public DBInit(HallRepository hallRepository) {
+    public DBInit(HallRepository hallRepository, UserRepository userRepository) {
         this.hallRepository = hallRepository;
+        this.userRepository = userRepository;
     }
     @Override
     public void run(String... args) throws Exception {
 
         if (hallRepository.count() == 0) {
             initHalls();
+            initUsers();
         }
+    }
+
+    private void initUsers() {
+        List<User> users = new ArrayList<>();
+
+        users.add(new User()
+                .setUuid(UUID.randomUUID())
+                .setFirstName("admin")
+                .setLastName("admin")
+                .setEmail("mail@example.com")
+                .setPhone("9090909009")
+                .setPassword("1234")
+                .setActive(true)
+
+        );
+        userRepository.saveAll(users);
     }
 
     private void initHalls() {

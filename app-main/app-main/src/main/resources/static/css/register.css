@@ -1,0 +1,125 @@
+@font-face {
+    font-family: 'Giga Sans';
+    src: url('LocomotypeGigaSansMedium.otf') format('opentype');
+  }
+  
+      body {
+        position: relative;
+        font-family: 'Giga Sans', sans-serif;
+
+
+      }
+
+      .background-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background-image: url('../images/background1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        box-shadow: rgba(0, 0, 0, 0.5) 2000px 2000px 2000px 2000px inset;
+
+        z-index: -1;
+        filter: blur(2px);
+
+      }
+
+      .input-wide {
+        margin-bottom: 1rem;
+      }
+
+      #supportCheckbox:checked ~ div span {
+        opacity: 1;
+      }
+    
+      .main-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px;
+
+
+      }
+    
+      .form-holder {
+        margin: 0 auto;
+        max-width: 560px;
+        width: 100%;
+        background-color: rgb(203, 232, 248);
+        padding: 40px;
+      }
+    
+
+    
+      .form-title {
+        margin-bottom: 2.2rem;
+
+      }
+      .form-title h2 {
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 34px;
+        color: #07074d;
+        text-align: center;
+      }
+      .form-title p {
+        font-size: 1rem;
+        line-height: 1.7rem;
+        color: #536387;
+        margin-top: 1rem;
+        text-align: center;
+      }
+    
+      .input-field-flex {
+        display: flex;
+        gap: 1.4rem;
+        margin-bottom: 1rem;
+      }
+      .input-field-flex > div {
+        width: 50%;
+      }
+      .input-field {
+        text-align: center;
+        width: 100%;
+        padding: 1rem 2rem;
+        border-radius: 5px;
+        border: 1px solid #dde3ec;
+        background: #ffffff;
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: #536387;
+        outline: none;
+        resize: none;
+      }
+      .input-field:focus {
+        border-color: #6a64f1;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+      }
+      .input-label {
+        color: #536387;
+        font-size: 0.9rem;
+        line-height: 1.6rem;
+        display: block;
+        margin-bottom: 0.8rem;
+      }
+    
+
+      .submit-btn {
+        font-size: 1rem;
+        border-radius: 6px;
+        padding: 1rem 2rem;
+        border: none;
+        font-weight: 500;
+        background-color: rgba(31, 31, 31, 0.8);
+        color: white;
+        cursor: pointer;
+        margin-top: 1.6rem;
+      }
+      .submit-btn:hover {
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+      }

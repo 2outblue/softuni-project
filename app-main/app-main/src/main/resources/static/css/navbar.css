@@ -1,0 +1,72 @@
+
+.nav-bar {
+
+    /* margin: 2em 0 2em 0; */
+    margin: 0;
+    /* padding: 0.5rem; */
+
+    position: relative;
+    top: 0;
+    left: 0;
+    color: white;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 10;
+    /* height: 100%; */
+
+}
+
+.shadow-overlay {
+    background-size: 100% 95px;
+    background-image: url('shadow-nav2.png');
+    padding: 0;
+    height: 95px;
+}
+
+
+.nav-bar .header-nav{
+    /* background-size: 100% 95px; */
+    /* background-image: url('shadow-nav2.png'); */
+
+    flex: 1 0 100%;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content:space-between;
+    min-height: 100;
+    
+}
+
+.btn-holder {
+    height: 50pt;
+    min-height: 100;
+    max-width: fit-content;
+    align-items: center;
+
+}
+
+.nav-button {
+    min-height: 100%;
+    flex: 1 0 100%;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 1em;
+    font-weight: 800;
+}
+
+.cc-logo {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    margin-left: 50px;
+}
+
+.language-select {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    margin-right: 25px;
+}

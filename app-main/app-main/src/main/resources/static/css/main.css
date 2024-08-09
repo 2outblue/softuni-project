@@ -555,12 +555,101 @@ list-style: none;
 }
 
 
-
-
-
 /* ^^^^^^ -------------------------- EVENT DETAILS ------------------------------- */
 /* ^^^^^^ -------------------------- EVENT DETAILS ------------------------------- */
 /* ^^^^^^ -------------------------- EVENT DETAILS ------------------------------- */
 
 
+/*  -------------------------- CALENDAR BOOKING ------------------------------- */
+/*  -------------------------- CALENDAR BOOKING ------------------------------- */
+/*  -------------------------- CALENDAR BOOKING ------------------------------- */
+/*  -------------------------- CALENDAR BOOKING ------------------------------- */
 
+
+.cal-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    /*min-height: 100vh;*/
+
+    margin-top: 2rem;
+
+    padding: 0 4rem 3rem;
+}
+
+.cal-select-container {
+    align-self: center;
+    margin-top: 6rem;
+}
+
+.cal-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-height: 2.2rem;
+}
+
+.cal-y {
+    padding: 1rem;
+}
+
+
+.cal-main {
+    flex: 1;
+    padding: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0.5rem;
+}
+
+.cal-weekdays {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+}
+table, th, td {
+    /*border: 1px solid #ddd;*/
+}
+th, td {
+    margin: 2rem;
+    /*padding: 15px;*/
+    text-align: center;
+}
+.day-cell {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.day-cell:hover {
+    background-color: #f0f0f0;
+}
+
+.ic-container {
+    position: relative;
+    padding: 2.6rem 2.5rem;
+    background-color: rgb(203, 232, 248);
+    color: rgba(31, 31, 31, 0.8);
+}
+
+.ic-container:hover {
+    background-color: rgba(31, 31, 31, 0.8);
+    color: rgb(203, 232, 248);
+}
+
+.disabled {
+    background-color: rgba(68, 68, 68, 0.6);
+    pointer-events: none;
+}
+
+.ic-day {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+/* ^^^^^^ -------------------------- CALENDAR BOOKING ------------------------------- */
+/* ^^^^^^ -------------------------- CALENDAR BOOKING ------------------------------- */
+/* ^^^^^^ -------------------------- CALENDAR BOOKING ------------------------------- */
+/* ^^^^^^ -------------------------- CALENDAR BOOKING ------------------------------- */

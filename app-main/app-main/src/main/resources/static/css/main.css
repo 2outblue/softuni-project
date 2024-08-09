@@ -527,24 +527,30 @@ list-style: none;
 }
 
 .details-right {
-  margin: 10.1rem 0 15rem 35%;
+  margin: 11.1rem 0 15rem 35%;
   padding: 2rem 3rem 2rem 3rem;
   margin-left: 40%;
   width: 60%;
 }
 
-.dl-title {
+.details-fixed img {
+  max-width: 5rem;
+  margin-top: 3.5rem;
+  
+}
+
+.dr-title {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
-.dl-organizer {
+.dr-organizer {
   margin-bottom: 2.5rem;
   font-size: 1.5rem;
 }
 
-.dl-description {
+.dr-description {
   font-size: 1.1rem;
 }
 

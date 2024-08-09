@@ -51,7 +51,9 @@ public class CalendarService {
 
             // Generate Days of the input month
             for (int i = 1; i <= difference ; i++) {
-                week.add(new Day(i, false));
+                // Disable days of the current month if they are in the past
+                boolean disabled = i <= LocalDate.now().getDayOfMonth() && yearMonth.getMonthValue() == LocalDate.now().getMonthValue();
+                week.add(new Day(i, disabled));
             }
             weeks.add(week);
             week = new ArrayList<>();
@@ -61,9 +63,15 @@ public class CalendarService {
 
         // go through all days of the month
         while (!current.isAfter(lastDayOfMonth)) {
-            // add the day to the week
             // TODO: implement filtering logic for event info
-            week.add(new Day(current.getDayOfMonth(), false));
+
+            // Disable days of the current month if they are in the past
+            boolean disabled = false;
+            if (current.getDayOfMonth() <= LocalDate.now().getDayOfMonth() && yearMonth.getMonthValue() == LocalDate.now().getMonthValue()) {
+                disabled = true;
+            }
+            // add the day to the week
+            week.add(new Day(current.getDayOfMonth(), disabled));
 
             // start a new week on saturday
             if (current.getDayOfWeek() == java.time.DayOfWeek.SATURDAY) {

@@ -8,11 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
+
 import java.time.Year;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -25,6 +23,7 @@ public class CalendarController {
         this.calendarService = calendarService;
     }
 
+    //TODO - add previous and next month buttons and functionality if there is time
     @GetMapping("/calendar")
     public String getMonthCalendar(@RequestParam(required = false) Integer year,
                                    @RequestParam(required = false) Integer month,

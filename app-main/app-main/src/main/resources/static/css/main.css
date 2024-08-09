@@ -587,11 +587,38 @@ list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    max-height: 2.2rem;
+    max-height: 2.7rem;
+    gap: 1.7rem;
 }
 
 .cal-y {
     padding: 1rem;
+}
+
+.cal-select-btn {
+    padding: 1rem 2rem;
+    background-color: rgb(203, 232, 248);
+    color: rgba(31, 31, 31, 0.9);
+    font-size: 1.5rem;
+    font-weight: 700;
+    /*border: none;*/
+    border-radius: 0.5rem;
+    text-align: center;
+    border: 2px solid rgba(31, 31, 31, 1);
+
+    display: flex;
+}
+
+.cal-select-btn span {
+    align-self: center;
+    justify-self: center;
+}
+
+.cal-select-btn:hover {
+    background-color: rgba(31, 31, 31, 0.9);
+    color: rgb(203, 232, 248);
+    border: 2px solid rgb(203, 232, 248);
+    cursor: pointer;
 }
 
 
@@ -639,7 +666,7 @@ th, td {
 }
 
 .disabled {
-    background-color: rgba(68, 68, 68, 0.6);
+    background-color: rgba(99, 99, 99, 0.6);
     pointer-events: none;
 }
 

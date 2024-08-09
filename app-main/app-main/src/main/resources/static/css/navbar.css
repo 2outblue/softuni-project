@@ -1,11 +1,26 @@
+@import url(reset.css);
+
+@font-face {
+    font-family: 'Giga Sans';
+    src: url('LocomotypeGigaSansMedium.otf') format('opentype');
+  }
+
+body {
+    position: relative;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+  
+      font-family: 'Giga Sans';
+      background-color: rgb(203, 232, 248);
+  }
 
 .nav-bar {
-
     /* margin: 2em 0 2em 0; */
     margin: 0;
     /* padding: 0.5rem; */
 
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
     color: white;
@@ -13,20 +28,17 @@
     width: 100%;
     z-index: 10;
     /* height: 100%; */
-
 }
 
 .shadow-overlay {
     background-size: 100% 95px;
-    background-image: url('shadow-nav2.png');
+    background-image: url('/static/images/shadow-nav2.png');
     padding: 0;
     height: 95px;
 }
 
 
 .nav-bar .header-nav{
-    /* background-size: 100% 95px; */
-    /* background-image: url('shadow-nav2.png'); */
 
     flex: 1 0 100%;
     display: flex;
@@ -38,11 +50,10 @@
 }
 
 .btn-holder {
-    height: 50pt;
-    min-height: 100;
-    max-width: fit-content;
-    align-items: center;
-
+    height: 5rem;
+    /* min-height: 100; */
+    /* max-width: fit-content; */
+    align-content: center;
 }
 
 .nav-button {
@@ -54,6 +65,14 @@
     color: white;
     font-size: 1em;
     font-weight: 800;
+
+    padding: 0 1.5rem;
+}
+
+.nav-button:hover {
+
+    background-color: rgb(203, 232, 248);
+    color: rgba(31, 31, 31, 0.9);
 }
 
 .cc-logo {
@@ -67,6 +86,25 @@
     background-color: transparent;
     border: 0;
     cursor: pointer;
-    margin-top: 0.8rem;
-    margin-right: 25px;
+
+    display: flex;
+    
+
+    /* margin-left: 2rem; */
+
+    max-width: 44%;
+
+}
+
+.halls {
+    margin-left: 5rem;
+}
+
+.login {
+    margin-left: 7rem;
+}
+
+.lang-div {
+    display: flex;
+    justify-content: center;
 }

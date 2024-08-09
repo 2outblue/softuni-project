@@ -6,6 +6,7 @@
 }
 
 body {
+  position: relative;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -20,7 +21,7 @@ body {
 /* -------------------------- NAVBAR ---------------------------- */
 
 .index-header {
-    background-image: url(image1-main.png);
+    background-image: url('/static/images/image1-main.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -54,77 +55,7 @@ body {
     text-align: center;
 }
 
-.nav-bar {
 
-    /* margin: 2em 0 2em 0; */
-    margin: 0;
-    /* padding: 0.5rem; */
-
-    position: relative;
-    top: 0;
-    left: 0;
-    color: white;
-    flex-wrap: wrap;
-    width: 100%;
-    z-index: 10;
-    /* height: 100%; */
-
-}
-
-.shadow-overlay {
-    background-size: 100% 95px;
-    background-image: url('shadow-nav2.png');
-    padding: 0;
-    height: 95px;
-}
-
-
-.nav-bar .header-nav{
-    /* background-size: 100% 95px; */
-    /* background-image: url('shadow-nav2.png'); */
-
-    flex: 1 0 100%;
-    display: flex;
-    list-style: none;
-    align-items: center;
-    justify-content:space-between;
-    min-height: 100;
-    
-}
-
-.btn-holder {
-    height: 50pt;
-    min-height: 100;
-    max-width: fit-content;
-    align-items: center;
-
-}
-
-.nav-button {
-    min-height: 100%;
-    flex: 1 0 100%;
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    color: white;
-    font-size: 1em;
-    font-weight: 800;
-}
-
-.cc-logo {
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    margin-left: 50px;
-}
-
-.language-select {
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    margin-top: 0.8rem;
-    margin-right: 25px;
-}
 
 
 /* -------------------------- NAVBAR ---------------------------- */
@@ -139,7 +70,7 @@ body {
 /* -------------------------- BODY MAIN ----------------------------- */
 
 .index-intro {
-    margin-top: 31rem;
+    margin-top: 37rem;
     margin-bottom: 4rem;
     display: flex;
     flex-direction: column;
@@ -297,18 +228,21 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  gap: 1rem;
 
 }
 
 .index-box-p {
   position: relative;
-  background-image: url(plan1.jpg);
+  background-image: url('/static/images/plan1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 
-  width: 30rem;
-  max-width: 400px;
+  flex: 1 1 100%;
+
+  /* width: 60rem; */
+  max-width: 490px;
   min-width: 100px;
   padding-top: 10rem;
   display: flex;
@@ -341,13 +275,13 @@ body {
 
 .index-box-att {
   position: relative;
-  background-image: url(attend1.jpg);
+  background-image: url('/static/images/attend1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 
-  width: 30rem;
-  max-width: 400px;
+  flex: 1 1 100%;
+  max-width: 490px;
   min-width: 100px;
   padding-top: 10rem;
   display: flex;
@@ -465,7 +399,7 @@ margin-bottom: 5rem;
 }
 
 .index-box-image-hot {
-    background-image: url('hotel-out-1.jpg');
+    background-image: url('/static/images/hotel-out-1.jpg');
     background-size: cover;
     background-position: center;
 
@@ -481,6 +415,13 @@ margin-bottom: 5rem;
 /* ^^ -------------------------- ACCOMODATION ------------------------------- */
 
 
+
+
+/* -------------------------- FOOTER ------------------------------- */
+/* -------------------------- FOOTER ------------------------------- */
+/* -------------------------- FOOTER ------------------------------- */
+/* -------------------------- FOOTER ------------------------------- */
+
 .site-footer {
   display: flex;
   flex-direction: row;
@@ -488,6 +429,7 @@ margin-bottom: 5rem;
   align-items: center;
   background-color: #352B2A;
   color: white;
+  z-index: 5;
 }
 
 .site-footer .footer-holder {
@@ -527,3 +469,92 @@ margin-bottom: 5rem;
   margin-top: 1rem;
 list-style: none;
 }
+
+
+/* ^^ -------------------------- FOOTER --------------------------------------------------------------- */
+/* ^^ -------------------------- FOOTER --------------------------------------------------------------- */
+/* ^^ -------------------------- FOOTER --------------------------------------------------------------- */
+/* ^^ -------------------------- FOOTER ----------------------------------------------------------------*/
+
+
+/* -------------------------- EVENT DETAILS ------------------------------- */
+/* -------------------------- EVENT DETAILS ------------------------------- */
+/* -------------------------- EVENT DETAILS ------------------------------- */
+
+
+.details-fixed {
+  position: fixed;
+  width: 40%;
+  top: 0;
+  left: 0;
+  margin: 5rem 0 0 0;
+
+  padding: 7rem 0 120rem 6.5rem;
+
+  color:#352B2A;
+
+  background-color: rgb(203, 232, 248);
+
+  border-right: 2px solid #352B2A;
+  z-index: 1;
+  
+}
+
+.details-date {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.details-hall {
+  font-size: 1.8rem;
+  margin: 1.3rem 0;
+}
+
+
+.details-btn button{
+  background-color:#352B2A;
+  color: rgb(203, 232, 248);
+
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+
+  font-size: 1.2rem;
+  font-weight: 900;
+  
+}
+
+.details-right {
+  margin: 10.1rem 0 15rem 35%;
+  padding: 2rem 3rem 2rem 3rem;
+  margin-left: 40%;
+  width: 60%;
+}
+
+.dl-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.dl-organizer {
+  margin-bottom: 2.5rem;
+  font-size: 1.5rem;
+}
+
+.dl-description {
+  font-size: 1.1rem;
+}
+
+
+
+
+
+/* ^^^^^^ -------------------------- EVENT DETAILS ------------------------------- */
+/* ^^^^^^ -------------------------- EVENT DETAILS ------------------------------- */
+/* ^^^^^^ -------------------------- EVENT DETAILS ------------------------------- */
+
+
+

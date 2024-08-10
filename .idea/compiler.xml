@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="I:/PROGRAMS ACTUAL/Gradle folder for Intellij i think/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.4.Final/e0fbecadd90e52873a3b45c4517d6d0445c537c5/mapstruct-processor-1.5.4.Final.jar" />
+        </processorPath>
+        <module name="app-main.main" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

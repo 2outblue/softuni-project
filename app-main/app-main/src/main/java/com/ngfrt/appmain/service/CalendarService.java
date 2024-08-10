@@ -19,14 +19,14 @@ public class CalendarService {
         this.securityConfiguration = securityConfiguration;
     }
 
-    public List<List<Day>> getWeeksForMonth(YearMonth yearMonth) {
+    public List<List<Day>> getWeeksForMonth(YearMonth yearMonthInput) {
         // instead of having a Week class just for that
         List<List<Day>> weeks = new ArrayList<>();
         List<Day> week = new ArrayList<>();
 
         // first and last days of the month
-        LocalDate firstDayOfMonth = yearMonth.atDay(1);
-        LocalDate lastDayOfMonth = yearMonth.atEndOfMonth();
+        LocalDate firstDayOfMonth = yearMonthInput.atDay(1);
+        LocalDate lastDayOfMonth = yearMonthInput.atEndOfMonth();
 
         // Adds a leading week row if the first day is not sunday. Explanation:
         // If the first day of the month doesn't start at sunday == problem - the user will be
@@ -49,10 +49,20 @@ public class CalendarService {
                 week.add(new Day(dayOfPreviousMonth, true));
             }
 
+
             // Generate Days of the input month
             for (int i = 1; i <= difference ; i++) {
-                // Disable days of the current month if they are in the past
-                boolean disabled = i <= LocalDate.now().getDayOfMonth() && yearMonth.getMonthValue() == LocalDate.now().getMonthValue();
+
+                // Disable days if they are in the past
+                boolean disabled = false;
+                if (((i <= LocalDate.now().getDayOfMonth() && yearMonthInput.getMonthValue() <= LocalDate.now().getMonthValue())  ||
+                        yearMonthInput.getMonthValue() < LocalDate.now().getMonthValue()) && yearMonthInput.getYear() <= LocalDate.now().getYear()) {
+                    disabled = true;
+                }
+//                boolean disabled = i <= LocalDate.now().getDayOfMonth();
+//                if (yearMonthInput.getMonthValue() < LocalDate.now().getMonthValue()) {
+//                    disabled = true;
+//                }
                 week.add(new Day(i, disabled));
             }
             weeks.add(week);
@@ -65,9 +75,10 @@ public class CalendarService {
         while (!current.isAfter(lastDayOfMonth)) {
             // TODO: implement filtering logic for event info
 
-            // Disable days of the current month if they are in the past
+            // Disable days if they are in the past
             boolean disabled = false;
-            if (current.getDayOfMonth() <= LocalDate.now().getDayOfMonth() && yearMonth.getMonthValue() == LocalDate.now().getMonthValue()) {
+            if (((current.getDayOfMonth() <= LocalDate.now().getDayOfMonth() && yearMonthInput.getMonthValue() <= LocalDate.now().getMonthValue())  ||
+                    yearMonthInput.getMonthValue() < LocalDate.now().getMonthValue()) && yearMonthInput.getYear() <= LocalDate.now().getYear()) {
                 disabled = true;
             }
             // add the day to the week

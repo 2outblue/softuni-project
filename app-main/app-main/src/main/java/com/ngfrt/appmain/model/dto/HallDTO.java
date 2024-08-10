@@ -1,30 +1,20 @@
-package com.ngfrt.appmain.model.entity;
+package com.ngfrt.appmain.model.dto;
 
-import jakarta.persistence.Entity;
-import org.hibernate.annotations.JdbcTypeCode;
-
-import java.sql.Types;
 import java.util.UUID;
 
-@Entity(name = "halls")
-public class Hall extends BaseEntity{
+public class HallDTO {
 
-    @JdbcTypeCode(Types.VARCHAR)
     private UUID uuid;
     private String name;
     private Integer number;
     private Integer capacity;
-
-    @JdbcTypeCode(Types.LONGVARCHAR)
     private String description;
-
-    private String shortDescription;
 
     public UUID getUuid() {
         return uuid;
     }
 
-    public Hall setUuid(UUID uuid) {
+    public HallDTO setUuid(UUID uuid) {
         this.uuid = uuid;
         return this;
     }
@@ -33,7 +23,7 @@ public class Hall extends BaseEntity{
         return name;
     }
 
-    public Hall setName(String name) {
+    public HallDTO setName(String name) {
         this.name = name;
         return this;
     }
@@ -42,7 +32,7 @@ public class Hall extends BaseEntity{
         return number;
     }
 
-    public Hall setNumber(Integer number) {
+    public HallDTO setNumber(Integer number) {
         this.number = number;
         return this;
     }
@@ -51,7 +41,7 @@ public class Hall extends BaseEntity{
         return capacity;
     }
 
-    public Hall setCapacity(Integer capacity) {
+    public HallDTO setCapacity(Integer capacity) {
         this.capacity = capacity;
         return this;
     }
@@ -60,17 +50,8 @@ public class Hall extends BaseEntity{
         return description;
     }
 
-    public Hall setDescription(String description) {
+    public HallDTO setDescription(String description) {
         this.description = description;
-        return this;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public Hall setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
         return this;
     }
 }

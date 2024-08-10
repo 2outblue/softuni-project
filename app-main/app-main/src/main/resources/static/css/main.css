@@ -591,6 +591,13 @@ list-style: none;
     gap: 1.7rem;
 }
 
+.cal-select-info {
+    text-align: center;
+    color: rgb(203, 232, 248);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
 .cal-y {
     padding: 1rem;
 }
@@ -637,9 +644,7 @@ table {
     font-weight: 700;
     color: white;
 }
-table, th, td {
-    /*border: 1px solid #ddd;*/
-}
+
 th, td {
     margin: 2rem;
     /*padding: 15px;*/
@@ -680,3 +685,72 @@ th, td {
 /* ^^^^^^ -------------------------- CALENDAR BOOKING ------------------------------- */
 /* ^^^^^^ -------------------------- CALENDAR BOOKING ------------------------------- */
 /* ^^^^^^ -------------------------- CALENDAR BOOKING ------------------------------- */
+
+/*  -------------------------- HALL DETAILS  ------------------------------- */
+/*  -------------------------- HALL DETAILS  ------------------------------- */
+/*  -------------------------- HALL DETAILS  ------------------------------- */
+/*  -------------------------- HALL DETAILS  ------------------------------- */
+
+
+.hall-desc-container {
+    display: flex;
+    flex-direction: column;
+    margin: 8rem 15rem 5rem;
+    gap: 1.8rem;
+
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(31, 31, 31, 0.8);
+}
+
+.h-name {
+  font-size: 3rem;
+
+}
+
+.h-desc {
+    background-color: rgba(31, 31, 31, 0.8);
+    color: rgb(203, 232, 248);
+    /*margin: 1rem 100%;*/
+    padding: 2rem 100%;
+    /*border-radius: 6px;*/
+}
+
+.h-desc p {
+  text-align: center;
+  font-size: 1.3rem;
+    min-width: 40rem;
+  /*margin: 0 15rem;*/
+    margin: 0;
+}
+
+.hall-img-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    margin: 0 5rem 7rem;
+
+    justify-content: center;
+}
+
+.hall-img-container img {
+    max-width: 25%;
+    max-height: 15rem;
+}
+
+
+
+
+
+
+
+
+
+/* ^^^^^^^^ -------------------------- HALL DETAILS  ------------------------------- */
+/* ^^^^^^^^ -------------------------- HALL DETAILS  ------------------------------- */
+/* ^^^^^^^^ -------------------------- HALL DETAILS  ------------------------------- */
+/* ^^^^^^^^ -------------------------- HALL DETAILS  ------------------------------- */
+
+

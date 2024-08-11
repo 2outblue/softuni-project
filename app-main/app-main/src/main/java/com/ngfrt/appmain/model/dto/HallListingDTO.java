@@ -1,7 +1,10 @@
 package com.ngfrt.appmain.model.dto;
 
+import java.util.UUID;
+
 public class HallListingDTO {
 
+    private UUID uuid;
     private String name;
     private String shortDescription;
 
@@ -21,5 +24,13 @@ public class HallListingDTO {
     public HallListingDTO setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
         return this;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 }

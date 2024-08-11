@@ -9,6 +9,8 @@ public class EventDTO {
     private String description;
     private String name;
     private LocalDate date;
+    private String organizer;
+    private String phoneNumber;
     private int tickets;
     private UUID hallId;
     private UUID userId;
@@ -47,6 +49,22 @@ public class EventDTO {
     public EventDTO setDate(LocalDate date) {
         this.date = date;
         return this;
+    }
+
+    public String getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(String organizer) {
+        this.organizer = organizer;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public int getTickets() {

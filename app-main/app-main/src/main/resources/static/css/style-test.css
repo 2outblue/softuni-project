@@ -1,0 +1,168 @@
+.cal-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .cal-container {
+      display: flex;
+      flex-direction: column;
+  
+      width: 100%;
+      /*min-height: 100vh;*/
+  
+      margin-top: 2rem;
+  
+      padding: 0 2.7rem 6rem;
+  }
+  
+  .cal-select-container {
+      align-self: center;
+      margin-top: 6rem;
+  }
+  
+  .cal-select-date {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      max-height: 2.7rem;
+      gap: 1.7rem;
+  }
+  
+  .cal-select-info {
+      text-align: center;
+      color: rgb(203, 232, 248);
+      font-size: 2rem;
+      font-weight: 800;
+  }
+  
+  .cal-y {
+      padding: 1rem;
+  }
+  
+  .cal-select-btn {
+      padding: 1rem 2rem;
+      background-color: rgb(203, 232, 248);
+      color: rgba(31, 31, 31, 0.9);
+      font-size: 1.5rem;
+      font-weight: 700;
+      /*border: none;*/
+      border-radius: 0.5rem;
+      text-align: center;
+      border: 2px solid rgba(31, 31, 31, 1);
+  
+      display: flex;
+  }
+  
+  .cal-select-btn span {
+      align-self: center;
+      justify-self: center;
+  }
+  
+  .cal-select-btn:hover {
+      background-color: rgba(31, 31, 31, 0.9);
+      color: rgb(203, 232, 248);
+      border: 2px solid rgb(203, 232, 248);
+      cursor: pointer;
+  }
+  
+  .cal-main {
+    display: flex;
+    flex-direction: row;
+      flex: 1;
+      padding: 20px;
+      width: 100%;
+  }
+  
+  .cal-main table {
+    flex-grow: 1;
+    width: 84%;
+    border-collapse: separate;
+    border-spacing: 0.5rem;
+    padding-left: 2rem;
+  }
+  
+  .booking-tracker {
+    width: 16%;
+    border-right: 2px solid #020101;
+    color: white;
+    margin-top: 3.5rem;
+  }
+  
+  .tracker-item {
+    margin-bottom: 20px;
+  }
+  
+  .tracker-item span {
+    font-weight: bold;
+  }
+  
+  .tracker-item div {
+    margin-top: 5px;
+  }
+  
+  .cal-weekdays {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+  }
+  
+  th, td {
+      margin: 2rem;
+      /*padding: 15px;*/
+      text-align: center;
+  }
+  .day-cell {
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  .day-cell:hover {
+      background-color: #f0f0f0;
+  }
+  
+  .ic-container {
+      position: relative;
+      width: 100%;
+      padding: 2.2rem 2.1rem;
+      background-color: rgb(203, 232, 248);
+      color: rgba(31, 31, 31, 0.8);
+      border: none;
+  }
+  
+  .ic-container:hover {
+      background-color: rgba(31, 31, 31, 0.8);
+      color: rgb(203, 232, 248);
+      cursor: pointer;
+  }
+  
+  .disabled {
+      background-color: rgba(99, 99, 99, 0.6);
+      pointer-events: none;
+  }
+  
+  .ic-day {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+  }
+
+  .hover-overlay-plan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgba(31, 31, 31, 0.98);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .hover-overlay-plan:hover {
+    opacity: 1;
+  }

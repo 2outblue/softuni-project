@@ -3,6 +3,7 @@ package com.ngfrt.appmain.util.calendar;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Month {
 
@@ -21,6 +22,15 @@ public class Month {
             months.add(new Month(monthsArr[i], i+1));
         }
         return months;
+    }
+
+    public static String getMonthName(int monthValue) {
+        System.out.println();
+       return getMonths().stream()
+               .filter(m -> m.getNumber() == monthValue)
+               .toList()
+               .getFirst()
+               .getName();
     }
 
     public String getName() {

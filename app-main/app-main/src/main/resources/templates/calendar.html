@@ -78,7 +78,7 @@
                     <span>Selected Hall:</span>
 <!--                    <input type="hidden" name="hallId" th:value="${event.hallId}">-->
                     <div id="tracker-hall"
-                         th:text="${event.getHallId()}">None</div>
+                         th:text="${hallName}">None</div>
                 </div>
                 <div class="tracker-item">
                     <span>Event Name:</span>
@@ -118,7 +118,7 @@
                 <tr th:each="week : ${weeks}">
                     <td th:each="day : ${week}"
                         th:class="${day.disabled} ? 'day-cell disabled' : 'day-cell'">
-                        <form th:action="@{/calendar/book}" th:method="GET">
+                        <form th:action="@{/event/finalize}" th:method="GET">
                             <input type="hidden" name="hallId" th:value="${event.hallId}">
                             <input type="hidden" name="name" th:value="${event.name}">
                             <input type="hidden" name="description" th:value="${event.description}">
@@ -127,6 +127,7 @@
                             <input type="hidden" name="year" th:value="${year}">
                             <input type="hidden" name="monthValue" th:value="${monthNumber}">
                             <input type="hidden" name="dayOfMonth" th:value="${day.dayOfMonth}">
+                            <input type="hidden" name="hallName" th:value="${hallName}">
                             <button th:class="${day.disabled} ? 'ic-container disabled' : 'ic-container'">
                                 <div class="hover-overlay-date">SELECT DATE AND PROCEED</div>
                                 <div class="ic-info">Some info?</div>

@@ -25,7 +25,6 @@ public class Month {
     }
 
     public static String getMonthName(int monthValue) {
-        System.out.println();
        return getMonths().stream()
                .filter(m -> m.getNumber() == monthValue)
                .toList()

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="\css\bootstrap.min.css" />
+    <link rel="stylesheet" href="\static\css\reset.css" />
+    <link rel="stylesheet" href="\static\css\navbar.css" />
+    <link rel="stylesheet" href="\static\css\main.css" />
+    <link rel="stylesheet" href="\static\css\background.css" />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <title>Booking Created</title>
+</head>
+<body>
+
+<div class="background-overlay"></div>
+<nav class="nav-bar">
+    <div class="shadow-overlay">
+        <ul class="header-nav">
+            <li class="btn-holder"><button class="cc-logo"><img src="\static\images\cc-logo.png" alt="img"></li>
+            <li class="btn-holder halls"><button class="nav-button">Halls</button></li>
+            <li class="btn-holder"><button class="nav-button">Featured Events</button></li>
+            <li class="btn-holder"><button class="nav-button">Plan Your Event</button></li>
+            <li class="btn-holder login"><button class="nav-button">Login</button></li>
+            <li class="btn-holder register"><button class="nav-button">Register</button></li>
+
+            <li class="btn-holder">
+                <div class="lang-div">
+                    <button class="language-select">
+                        <img src="\static\images\lang-uk.png" alt="img">
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    <form class="bc-main-container"
+    th:action="@{/event/create}"
+    th:method="POST">
+        <input type="hidden" name="hallId" th:value="${event.hallId}">
+        <input type="hidden" name="name" th:value="${event.name}">
+        <input type="hidden" name="description" th:value="${event.description}">
+        <input type="hidden" name="organizer" th:value="${event.organizer}">
+        <input type="hidden" name="date" th:value="${event.getDate()}">
+        <input type="hidden" name="phoneNumber" th:value="${event.phoneNumber}">
+        <div class="bc-event-info">
+            <div th:text="${hallName}">Platform 80</div>
+            <div th:text="${event.name}"> 45th FIDE Chess Olympiad 2024 </div>
+            <div th:text="${event.organizer}"> FIDE </div>
+            <div th:text="${event.description}"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam nam nulla natus tempore libero repellendus ipsa. Incidunt aliquid facilis sequi magnam tenetur, officia reprehenderit dolor! Ducimus eveniet accusantium quisquam maiores!
+                Lorem ipsum dolor, eaque. Fugiat, quas. Fugiat magni sunt natus laboriosam mollitia reiciendis debitis velit.</div>
+            <div th:text="${event.getDateString()}">September 20, 2024</div>
+            <div th:text="${event.phoneNumber}"> 080800808 </div>
+        </div>
+        <div class="bc-submit">
+            <p>We will send you a confirmation of the successful booking on your email. If you wish to feature your event on the 'Featured Events' page, please contact our Support</p>
+            <button type="submit">Finalize</button>
+        </div>
+
+    </form>
+
+
+
+</body>
+</html>
+
+
+
+

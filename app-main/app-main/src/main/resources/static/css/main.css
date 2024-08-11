@@ -904,3 +904,65 @@ th, td {
 /*  ^^^^^-------------------------------- HALL LIST-------------------------------------- */
 
 
+/*  ----------------------------------  FINALIZE BOOKING -------------------------------------- */
+/*  ----------------------------------  FINALIZE BOOKING -------------------------------------- */
+/*  ----------------------------------  FINALIZE BOOKING -------------------------------------- */
+/*  ----------------------------------  FINALIZE BOOKING -------------------------------------- */
+
+.bc-main-container {
+
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  color: white;
+  margin-top: 10%;
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-left: 2px solid rgb(203, 232, 248);
+  border-right: 2px solid rgb(203, 232, 248);
+}
+
+.bc-event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.3rem;
+}
+
+.bc-event-info :nth-child(1) {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.bc-submit {
+  margin-top: 2rem;
+  max-width: 65%;
+}
+
+.bc-submit button {
+  margin-top: 1rem;
+  padding: 1.5rem 2rem;
+
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  background-color:rgba(226, 10, 118, 0.7);
+  color: white;
+  border-radius: 0.6rem;
+  border: none;
+  letter-spacing: 0.2rem;
+}
+
+.bc-submit button:hover {
+  background-color: rgba(21, 169, 255, 1);
+}
+
+
+/*  ^^^^ --------------------------------  FINALIZE BOOKING -------------------------------------- */
+/*  ^^^^ --------------------------------  FINALIZE BOOKING -------------------------------------- */
+/*  ^^^^ --------------------------------  FINALIZE BOOKING -------------------------------------- */
+/*  ^^^^ --------------------------------  FINALIZE BOOKING -------------------------------------- */
+

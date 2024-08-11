@@ -1,6 +1,8 @@
 package com.ngfrt.appmain.model.dto;
 
 import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.UUID;
 
 public class EventDTO {
@@ -14,6 +16,13 @@ public class EventDTO {
     private int tickets;
     private UUID hallId;
     private UUID userId;
+
+    public String getDateString() {
+        String monthName = getDate().getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        int day = getDate().getDayOfMonth();
+        int year = getDate().getYear();
+        return String.format("%s %d, %d",monthName, day, year);
+    }
 
     public UUID getUuid() {
         return uuid;

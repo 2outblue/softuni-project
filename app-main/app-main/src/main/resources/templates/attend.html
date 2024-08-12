@@ -8,23 +8,16 @@
     <link rel="stylesheet" href="\static\css\main.css" />
     <link rel="stylesheet" href="\static\css\navbar.css" />
 
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+
     <style>
-        .form-area {
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             width: 100%;
-            padding-left: 20px;
-            color: white;
-        }
-
-        .form-area h2 {
-            font-weight: 800;
-        font-size: 2.5rem;
-        line-height: 34px;
-        color: rgb(203, 232, 248);
-        text-align: center;
-        }
-
-        .form-area form {
-            padding: 0 6rem;
         }
 
         .form-group {
@@ -47,7 +40,8 @@
         .form-group input {
             /* text-align: center; */
         width: 100%;
-        padding: 1rem 2rem;
+        min-width: 20rem;
+        padding: 1rem 0;
         border-radius: 5px;
         border: 1px solid #dde3ec;
         background: #ffffff;
@@ -56,37 +50,20 @@
         color: #536387;
         outline: none;
         resize: none;
+        margin-top: 1rem;
         }
 
         .form-group label {
             font-weight: 700;
             font-size: 1.3rem;
         }
-
-        .submit-btn {
-        font-size: 1.4rem;
-        border-radius: 6px;
-        padding: 1rem 3rem;
-        border: none;
-        font-weight: 600;
-        background-color: rgba(113, 136, 172, 0.8);
-        color: white;
-        cursor: pointer;
-        margin-top: 1.6rem;
-        margin-right: 5rem;
-      }
-      .submit-btn:hover {
-        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
-        background-color: rgba(159, 191, 243, 0.8);
-        color: black;
-      }
-
-      .be-btn {
-        text-align: center;
-      }
     </style>
 </head>
 <body>
+
+    <div class="ep-header">
+
+    </div>
 
     <nav class="nav-bar">
         <div class="shadow-overlay">
@@ -108,52 +85,54 @@
         </div>
     </nav>
 
-    <div class="bt-left">
-        <div class="details-date">SEPTEMBER 20</div>
-        <div class="details-hall"> PLATFORM 80 </div>
-        <div class="dr-description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam nam nulla natus tempore libero repellendus ipsa. Incidunt aliquid facilis sequi magnam tenetur, officia reprehenderit dolor! Ducimus eveniet accusantium quisquam maiores!
-            Lorem ipsum dolor, eaque. Fugiat, quas. Fugiat magni sunt natus laboriosam mollitia reiciendis debitis velit.
+
+
+    <div class="att-intro">
+        <div>
+            Your gateway to attending some of the most exciting events at Cartland Center! Whether you’re here to explore public events or attend a private gathering, this page has everything you need.
         </div>
     </div>
     
-    <div class="bt-right">
-        <h2>Buy Ticket</h2>
-        <form th:action="@{/calendar/book}" method="GET"
-        th:object="${eventDTO}">
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" th:name="firstName" th:field="*{firstName}"
-                    placeholder="Your first name">
+    <div class="att-container">
+        <div class="att-left">
+            <h2>Public Events</h2>
+            <div>
+                Browse and buy tickets to a variety of public events hosted at our venue. From entertainment to educational events, there’s always something happening.
             </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" th:name="lastName" th:field="*{lastName}"
-                    placeholder="Your last name">
+            <div class="att-clickable att-clickable-left">
+                <button class="att-clickable-overlay"
+                th:onclick="'window.location.href=\'/events/featured' + '\';'"> EXPLORE</button>
+                <div>Explore Public Events</div>
+                <div>
+                    Looking for something exciting to attend? Explore our wide range of public events happening at Cartland Center. From concerts and exhibitions to workshops and festivals, there’s something for everyone. Click here to view the full list of upcoming public events and secure your spot. Browse through the events, find what interests you, and purchase your tickets directly from this page. Don’t miss out on the opportunity to be part of some unforgettable experiences!
+                </div>
+                
             </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" th:name="email" th:field="*{email}"
-                    placeholder="Your email address">
-                <p>We will send you an the invoice and details of your ticket on your email address!</p>
+        </div>
+        <div class="att-right">
+            <h2>Private Events</h2>
+            <div>
+                Enter your event code to unlock access to exclusive, private events. Purchase or claim your ticket and get ready to enjoy a memorable experience.
             </div>
-
-            <div class="form-group">
-                <label for="paymentInfo">Payment Details</label>
-                <input type="text" id="paymentInfo" th:name="paymentInfo" 
-                    placeholder="Enter your payment information">
-                <input class="bt-last-input" type="text" id="cardCode" th:name="paymentInfo"
-                    placeholder="Card code">
+            <div class="att-clickable">
+                <div>Have an Event Code?</div>
+                <div>
+                    Enter your event code to unlock access to exclusive, private events. Purchase or claim your ticket and get ready to enjoy a memorable experience.
+                </div>
+                <form th:action="@{/event/search}"
+                th:method="GET">
+                    <div class="form-group">
+                        <label for="eventCode">Event Code</label>
+                        <input type="text" id="eventCode" th:name="eventCode"
+                            placeholder="Enter an event code">
+                        <input class="att-event-btn"
+                                type="submit" value="Search for Event">
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group be-btn">
-                <button type="submit"
-                        class="submit-btn">Buy</button>
-            </div>
-        </form>
-
+        </div>
     </div>
+
 
 
 

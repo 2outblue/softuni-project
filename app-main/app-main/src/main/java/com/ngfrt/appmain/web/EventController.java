@@ -12,25 +12,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.format.TextStyle;
 import java.util.List;
-import java.util.Locale;
+
 
 @Controller
 @RequestMapping("/event")
 public class EventController {
 
 
-    private final RestTemplate restTemplate;
     private final HallService hallService;
     private final EventService eventService;
 
 
-    public EventController(RestTemplate restTemplate, HallService hallService, EventService eventService) {
-        this.restTemplate = restTemplate;
+    public EventController(HallService hallService, EventService eventService) {
         this.hallService = hallService;
         this.eventService = eventService;
     }
@@ -43,42 +39,58 @@ public class EventController {
         return ResponseEntity.ok(events);
     }
 
-    @GetMapping("/plan")
-    public ModelAndView planEvent() {
+    @GetMapping("/attend")
+    public ModelAndView attend() {
 
-        return new ModelAndView("event-plan");
+        return new ModelAndView("attend");
     }
 
-    @GetMapping("/form")
-    public ModelAndView eventForm(Model model) {
-        List<HallListingDTO> halls = hallService.getAllHallsForListing();
-        model.addAttribute("halls", halls);
-        model.addAttribute("eventDTO", new EventDTO());
+    @GetMapping("/search")
+    public ModelAndView searchEvent(@RequestParam String eventCode, Model model) {
 
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("book-event");
-        return mav;
+
+
+        return new ModelAndView("index");
     }
 
-    @GetMapping("/finalize")
-    public ModelAndView finalizeBooking(@RequestParam String hallName,
-                                        EventDTO eventDTO,
-                                        DateDTO dateDTO,
-                                        Model model) {
 
-        EventDTO event = eventService.mapDate(eventDTO, dateDTO);
 
-        model.addAttribute("hallName", hallName);
-        model.addAttribute("event", eventDTO);
-        return new ModelAndView("booking-finalize");
-    }
-
-    @PostMapping("/create")
-    public ModelAndView createNewEvent(EventDTO eventDTO) {
-        eventService.createNewEvent(eventDTO);
-
-        return new ModelAndView("event-created");
-    }
+//    @GetMapping("/plan")
+//    public ModelAndView planEvent() {
+//
+//        return new ModelAndView("event-plan");
+//    }
+//
+//    @GetMapping("/form")
+//    public ModelAndView eventForm(Model model) {
+//        List<HallListingDTO> halls = hallService.getAllHallsForListing();
+//        model.addAttribute("halls", halls);
+//        model.addAttribute("eventDTO", new EventDTO());
+//
+//        ModelAndView mav = new ModelAndView();
+//        mav.setViewName("book-event");
+//        return mav;
+//    }
+//
+//    @GetMapping("/finalize")
+//    public ModelAndView finalizeBooking(@RequestParam String hallName,
+//                                        EventDTO eventDTO,
+//                                        DateDTO dateDTO,
+//                                        Model model) {
+//
+//        EventDTO event = eventService.mapDate(eventDTO, dateDTO);
+//
+//        model.addAttribute("hallName", hallName);
+//        model.addAttribute("event", eventDTO);
+//        return new ModelAndView("booking-finalize");
+//    }
+//
+//    @PostMapping("/create")
+//    public ModelAndView createNewEvent(EventDTO eventDTO) {
+//        eventService.createNewEvent(eventDTO);
+//
+//        return new ModelAndView("event-created");
+//    }
 
 
 }

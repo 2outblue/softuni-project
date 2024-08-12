@@ -52,6 +52,8 @@ public class EventService {
         HttpEntity<EventDTO> request = new HttpEntity<>(event);
         ResponseEntity<String> response = restTemplate.exchange(eventServiceUrl, HttpMethod.POST, request, String.class);
 
+        //TODO - throw a custom exception when an event is not found - catch it with controller advice
+        // and display an error to the user that event with such id doesn't exists
         if (!response.getStatusCode().is2xxSuccessful()) {
             throw new EventServiceException("Failed event operation", response.getStatusCode().value());
         }

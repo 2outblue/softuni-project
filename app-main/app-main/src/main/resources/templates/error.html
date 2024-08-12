@@ -21,6 +21,7 @@
         .bc-main-container {
             border: none;
             margin-top: 15%;
+            border: none;
         }
 
     </style>
@@ -50,9 +51,11 @@
 
 <div class="bc-main-container">
     <div class="bc-event-info">
-        <div class="ec-success">
-            Your event was booked successfully! You will be redirected shortly.
+        <div class="error-msg">
+            Ooops... We have encountered an issue. We are working hard to resolve this. Sorry..
         </div>
+        <button class="err-home"
+                th:onclick="'window.location.href=\'/' + '\';'"> GO TO HOMEPAGE </button>
     </div>
 </div>
 

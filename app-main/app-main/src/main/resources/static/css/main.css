@@ -814,6 +814,7 @@ th, td {
 
   z-index: 1;
   background: linear-gradient(90deg, rgba(96,0,130,1) 0%, rgba(159,47,142,1) 49%, rgba(0,210,252,1) 100%);
+
 }
 
 .hl-intro-container {
@@ -857,21 +858,25 @@ th, td {
   margin-bottom: 5rem;
 }
 
+
 .h-list-h {
+  position: relative;
   align-self: center;
   text-align: center;
   z-index: 2;
-  max-width: 47%;
-    min-width: 25%;
+  max-width: 57%;
+    min-width: 20%;
   padding: 2rem 1rem;
   margin: 1.5rem 0;
 
   background-color: #352B2A;
+background: linear-gradient(90deg, rgba(153,2,8,1) 0%, rgba(121,9,68,1) 53%, rgba(153,24,102,1) 100%);
   color: white;
+  border: none;
   border-radius: 0.7rem;
 }
 
-.h-list-h:hover {
+/* .h-list-h:hover {
 
   background-color: #f0f0f0;
   color: #352B2A;
@@ -879,20 +884,45 @@ th, td {
 
   cursor: pointer;
   border: 2px solid black;
+} */
+
+.h-list-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(31, 31, 31, 0.98);
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border: none;
+  border-radius: 0.7rem;
+
 }
 
-.h-list-h :nth-child(1) {
-  font-size: 1.6rem;
-  font-weight: 900;
+.h-list-overlay:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .h-list-h :nth-child(2) {
+  font-size: 1.9rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.h-list-h :nth-child(3) {
   font-size: 1.1rem;
   font-weight: 900;
 }
 
 .h-list-h:last-child {
-  margin-bottom: rem;
+  margin-bottom: 3rem;
 }
 
 

@@ -44,15 +44,20 @@
     
     </div>
 
+    <div></div>
+
     <div class="h-list-container">
         <div class="h-list-h"
-        th:each="hall : ${halls}">
-            <div class="hl-name" th:text="${hall.getName()}"> Platform 80 </div>
-            <div class="hl-sdesc" th:text="${hall.getShortDescription()}">Seating capacity: 80, Usable area: 120 square meters. A compact and versatile space, perfect for workshops, training sessions, and intimate gatherings.</div>
+             th:each="hall : ${halls}">
+            <div>
+            <button class="h-list-overlay"
+            th:onclick="'window.location.href=\'/halls/details?hallNumber=' + ${hall.getNumber()} + '\';'"> Click For Details</button>
+                <div class="hl-name" th:text="${hall.getName()}"> Platform 80 </div>
+                <div class="hl-sdesc" th:text="${hall.getShortDescription()}">Seating capacity: 80, Usable area: 120 square meters. A compact and versatile space, perfect for workshops, training sessions, and intimate gatherings.</div>
+
+            </div>
         </div>
     </div>
-
-
 
 
 

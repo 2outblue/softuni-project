@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class HallListingDTO {
 
+    private Integer number;
     private UUID uuid;
     private String name;
     private String shortDescription;
@@ -32,5 +33,13 @@ public class HallListingDTO {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 }

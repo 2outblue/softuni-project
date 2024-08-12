@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="globals.css" /> -->
+    <link rel="stylesheet" href="\static\css\bootstrap.min.css" />
+    <link rel="stylesheet" href="\static\css\main.css" />
+    <link rel="stylesheet" href="\static\css\navbar.css" />
+
+      <link rel="stylesheet" href="/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="/css/main.css" />
+      <link rel="stylesheet" href="/css/navbar.css" />
+
+    <title>Index</title>
+    <style>
+        body {
+            background-color: rgb(237, 242, 245);
+        }
+    </style>
+  </head>
+  <body>
+
+        <div class="ep-header">
+            <div class="ep-header-btn">
+                <button class="ep-booknow"
+                        th:onclick="'window.location.href=\'/event/form' + '\';'"> Book Now </button>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <div class="shadow-overlay">
+                <ul class="header-nav">
+                    <li class="btn-holder"><button class="cc-logo"><img src="\static\images\cc-logo.png" alt="img"></li>
+                    <li class="btn-holder halls"><button class="nav-button">Halls</button></li>
+                    <li class="btn-holder"><button class="nav-button">Featured Events</button></li>
+                    <li class="btn-holder"><button class="nav-button">Plan Your Event</button></li>
+                    <li class="btn-holder login"><button class="nav-button">Login</button></li>
+                    <li class="btn-holder register"><button class="nav-button">Register</button></li>
+
+                    <li class="btn-holder">
+                        <div class="lang-div">
+                            <button class="language-select">
+                                <img src="\static\images\lang-uk.png" alt="img">
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+
+
+    <div class="ep-main-container">
+        <div class="ep-halls">
+            <div>
+                <div>Explore our diverse range of event spaces, each designed to accommodate different types and sizes of gatherings. From intimate halls perfect for private functions to expansive spaces for large-scale events, we have the ideal setting for your occasion.</div>            
+                <button class="ep-info-overlay"
+                th:onclick="'window.location.href=\'/halls' + '\';'"> EXPLORE </button>
+            </div>
+        </div>
+        <p>&#129139;</p>
+        <div>
+            Once you've chosen your venue, it’s time to tailor the details. From catering options to audiovisual equipment, our team is here to assist you in customizing every aspect of your event. We also offer additional services like event planning assistance, decor, and on-site support to ensure everything runs smoothly.
+        </div>
+        <p>&#129139;</p>
+        <div>
+            Want to see the venue in person? Book a guided tour with one of our event specialists. Explore the space, ask questions, and start visualizing your event at Cartland Center. We also offer virtual tours on our website, so you can get a feel for the venue from the comfort of your home or office.
+        </div>
+        <p>&#129139;</p>
+        <div>
+            <div>
+                <div>Ready to move forward? Once you have an account, visit our Booking Page to begin the booking process and reserve your date. Our easy-to-use platform will guide you through each step, ensuring no detail is overlooked.</div>            
+                <button class="ep-info-overlay"
+                        th:onclick="'window.location.href=\'/event/form' + '\';'"> BOOK NOW </button>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+    <footer class="site-footer">
+        <div class="footer-holder">
+            <figure class="footer-logo"><img src="\static\images\cc-logo.png" alt="img"></figure>
+            <p class="footer-text-upper">
+                The Cartland Convention Center is owned and proudly managed by Highland Holdings. We leverage the skills and talant of our
+                partners to ensure an exciting and sustainable future.
+            </p>
+            <p class="footer-text-end">
+                © Copyright 2024 the Cartland Center.
+            </p>
+        </div>
+        <div class="footer-logo">
+            <img src="\static\images\green-logo.png" alt="greenlogo">
+        </div>
+        <div class="footer-right">
+            <ul>
+                <li>
+                    <p>Contact Us</p>
+                </li>
+                <li>
+                    <p>Sustainability</p>
+                </li>
+                <li>
+                    <p>FAQs</p>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+  </body>
+</html>

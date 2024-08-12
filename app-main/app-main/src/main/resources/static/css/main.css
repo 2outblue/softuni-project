@@ -996,3 +996,125 @@ background: linear-gradient(90deg, rgba(153,2,8,1) 0%, rgba(121,9,68,1) 53%, rgb
 /*  ^^^^ --------------------------------  FINALIZE BOOKING -------------------------------------- */
 /*  ^^^^ --------------------------------  FINALIZE BOOKING -------------------------------------- */
 
+
+/*  ----------------------------------  EVENT PLAN  -------------------------------------- */
+/*  ----------------------------------  EVENT PLAN  -------------------------------------- */
+/*  ----------------------------------  EVENT PLAN  -------------------------------------- */
+/*  ----------------------------------  EVENT PLAN  -------------------------------------- */
+
+
+
+
+
+/*  ^^^^^ ----------------------------------  EVENT PLAN  -------------------------------------- */
+/*  ^^^^^ ----------------------------------  EVENT PLAN  -------------------------------------- */
+/*  ^^^^^ ----------------------------------  EVENT PLAN  -------------------------------------- */
+/*  ^^^^^ ----------------------------------  EVENT PLAN  -------------------------------------- */
+
+.ep-header {
+  background-image: url('/static/images/background-lobby1.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+
+  width: 100%;
+  /* height: 65%; */
+  /* min-height: 65%;
+  max-height: 65%; */
+  padding-top: 28rem; /* (img-height / img-width * container-width) */
+              /* (853 / 1280 * 100) */
+
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+
+  box-shadow: rgba(0, 0, 0, 0.616) 2000px 2000px 2000px 2000px inset;
+}
+
+.ep-header-btn {
+  position: absolute;
+  top: 0;
+  margin-top: 11rem;
+  font-weight: 700;
+  font-size: 3rem;
+  max-width: 50%;
+  color: whitesmoke;
+  text-align: center;
+  border: none;
+}
+
+.ep-booknow {
+  cursor: pointer;
+
+  border-radius: 0.4rem;
+  background-color: rgba(241, 31, 189, 0.76);
+  padding: 0.5rem 1.3rem;
+  border: none;
+}
+
+.ep-booknow:hover {
+  background-color: rgb(255, 34, 200);
+}
+
+.ep-main-container {
+  margin-top: 28rem;
+  margin-bottom: 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 60%;
+  align-self: center;
+  padding: 4rem 3rem;
+
+  gap: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+
+  border-left: 2px solid #352B2A;
+  border-right: 2px solid #352B2A;
+  background-color: rgb(203, 232, 248);
+}
+
+.ep-main-container div {
+  position: relative;
+  padding: 2rem 1.5rem;
+  font-weight: 700;
+}
+
+.ep-main-container p {
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+
+.ep-info-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(31, 31, 31, 0.98);
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border: none;
+  border-radius: 0.7rem;
+
+}
+
+.ep-info-overlay:hover {
+  opacity: 1;
+  cursor: pointer;
+}

@@ -44,8 +44,6 @@ public class EventService {
     public List<EventDTO> getAllEvents() {
         String response = restTemplate.getForObject(eventServiceUrl, String.class);
 
-        //TODO  - this should be done by a service and the gson in the configuration,
-
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();
         return gson.fromJson(response, new TypeToken<List<EventDTO>>(){}.getType());
@@ -75,6 +73,17 @@ public class EventService {
         }
     }
 
+    public List<EventInfoDTO> getFeaturedEvents() {
+
+        String url = eventServiceUrl + "/featured";
+        String response = restTemplate.getForObject(url, String.class);
+
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
+        return gson.fromJson(response, new TypeToken<List<EventInfoDTO>>(){}.getType());
+    }
+
+
     public EventDTO mapDate(EventDTO eventDTO, DateDTO dateDTO){
         return eventDTO.setDate(LocalDate.of(dateDTO.getYear(), dateDTO.getMonthValue(), dateDTO.getDayOfMonth()));
     }
@@ -91,13 +100,4 @@ public class EventService {
         }
     }
 
-
-    public boolean isUUid(String input) {
-        // Compile regular expression
-        final Pattern pattern = Pattern.compile("([A-Za-z0-9]+(-[A-Za-z0-9]+)+)", Pattern.CASE_INSENSITIVE);
-        // Match regex against input
-        final Matcher matcher = pattern.matcher(input);
-        // Use results...
-        return matcher.matches();
-    }
 }

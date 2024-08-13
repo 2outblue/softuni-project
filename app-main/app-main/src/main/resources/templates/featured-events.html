@@ -39,7 +39,7 @@
         <div class="e-list-intro">
             <div> Discover What's Happening at Cartland Center </div>
             <div>
-                Welcome to our Featured Events page! Here, we showcase a curated selection of the most exciting public events happening at [Venue Name]. From live performances and art exhibitions to educational seminars and community festivals, there's something for everyone. Our featured events are handpicked to offer you the best experiences our venue has to offer.
+                Welcome to our Featured Events page! Here, we showcase a curated selection of the most exciting public events happening at Cartland Convention Center. From live performances and art exhibitions to educational seminars and community festivals, there's something for everyone. Our featured events are handpicked to offer you the best experiences our venue has to offer.
             </div>
             <div>
                 Interested in attending? Simply browse through our list of featured events below, click on the one that catches your eye, and purchase your tickets directly from the event page. Don’t forget to check the details, including date, time, and venue, to make sure you don’t miss out.
@@ -53,16 +53,17 @@
 
     <div class="e-list-container">
         <div class="e-list-h"
-             th:each="hall : ${halls}">
-            <div>
+             th:each="event : ${events}">
+            <form th:action="@{/event/search}">
+                <input type="hidden" name="eventCode" th:value="${event.getUuidString()}">
             <button class="e-list-overlay"
-            th:onclick="'window.location.href=\'/halls/details?hallNumber=' + ${hall.getNumber()} + '\';'"> Click For Details</button>
-                <div class="e-name" th:text="${hall.getName()}"> EVENT NAME </div>
-                <div class="e-organ" th:text="${hall.getName()}"> ORGANIZER </div>
-                <div class="e-date" th:text="${hall.getName()}"> EVENT DATE </div>
-                <div class="e-desc"> EVENT DESCRIPTION </div>
+            > Click For Details</button>
+                <div class="e-name" th:text="${event.getName()}"> EVENT NAME </div>
+                <div class="e-organ" th:text="${event.getOrganizer()}"> ORGANIZER </div>
+                <div class="e-date" th:text="${event.getDateString()}"> EVENT DATE </div>
+                <div class="e-desc" th:text="${event.getDescription()}"> EVENT DESCRIPTION </div>
 
-            </div>
+            </form>
         </div>
     </div>
 

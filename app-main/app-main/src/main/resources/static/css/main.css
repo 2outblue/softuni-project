@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
 
-    font-family: 'Giga Sans';
+    font-family: 'Giga Sans', sans-serif;
     background-color: rgb(203, 232, 248);
 }
 
@@ -524,6 +524,12 @@ list-style: none;
   font-size: 1.2rem;
   font-weight: 900;
   
+}
+
+.details-btn .disabled {
+  cursor: not-allowed;
+  color: red;
+  background-color: rgb(203, 232, 248);
 }
 
 .details-right {
@@ -1363,7 +1369,7 @@ background: linear-gradient(90deg, rgba(153,2,8,1) 0%, rgba(121,9,68,1) 53%, rgb
   z-index: 1;
   /* background: linear-gradient(90deg, rgba(96,0,130,1) 0%, rgba(159,47,142,1) 49%, rgba(0,210,252,1) 100%); */
 
-  background-color: (203, 232, 248);
+  background-color: rgb(203, 232, 248);
 
 }
 

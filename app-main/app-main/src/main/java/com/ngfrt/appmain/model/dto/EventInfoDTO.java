@@ -11,7 +11,9 @@ public class EventInfoDTO {
     private String description;
     private String name;
     private LocalDate date;
+    private String organizer;
     private String hallName;
+    private boolean soldOut;
 
     public String getDateString() {
         String monthName = getDate().getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
@@ -20,43 +22,70 @@ public class EventInfoDTO {
         return String.format("%s %d, %d",monthName, day, year);
     }
 
+    public String getUuidString() {
+        return this.uuid.toString();
+    }
+
     public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public EventInfoDTO setUuid(UUID uuid) {
         this.uuid = uuid;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public EventInfoDTO setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public EventInfoDTO setName(String name) {
         this.name = name;
+        return this;
     }
 
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public EventInfoDTO setDate(LocalDate date) {
         this.date = date;
+        return this;
+    }
+
+    public String getOrganizer() {
+        return organizer;
+    }
+
+    public EventInfoDTO setOrganizer(String organizer) {
+        this.organizer = organizer;
+        return this;
     }
 
     public String getHallName() {
         return hallName;
     }
 
-    public void setHallName(String hallName) {
+    public EventInfoDTO setHallName(String hallName) {
         this.hallName = hallName;
+        return this;
+    }
+
+    public boolean isSoldOut() {
+        return soldOut;
+    }
+
+    public EventInfoDTO setSoldOut(boolean soldOut) {
+        this.soldOut = soldOut;
+        return this;
     }
 }

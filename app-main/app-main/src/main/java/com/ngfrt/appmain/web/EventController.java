@@ -3,6 +3,7 @@ package com.ngfrt.appmain.web;
 import com.ngfrt.appmain.model.dto.*;
 import com.ngfrt.appmain.service.EventService;
 import com.ngfrt.appmain.service.HallService;
+import com.ngfrt.appmain.service.exception.EventNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -44,6 +46,18 @@ public class EventController {
     public ModelAndView searchEvent(@RequestParam(required = false) String eventCode, Model model) {
 
         EventInfoDTO eventInfo = eventService.getEventByUuid(eventCode);
+        model.addAttribute("event", eventInfo);
+
+        return new ModelAndView("event-details");
+    }
+
+    @GetMapping("/purchase")
+    public ModelAndView buyTicket(@RequestParam(required = false) String eventCode, Model model) {
+
+        EventInfoDTO eventInfo = eventService.getEventByUuid(eventCode);
+        if (eventInfo.isSoldOut()) {
+            throw new EventNotFoundException("This event is sold out!");
+        }
         model.addAttribute("ticketDTO", new TicketDTO());
         model.addAttribute("event", eventInfo);
 

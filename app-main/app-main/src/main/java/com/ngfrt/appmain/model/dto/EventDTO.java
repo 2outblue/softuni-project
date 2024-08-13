@@ -16,6 +16,7 @@ public class EventDTO {
     private int tickets;
     private UUID hallId;
     private UUID userId;
+    private boolean soldOut;
 
     public String getDateString() {
         String monthName = getDate().getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
@@ -100,6 +101,15 @@ public class EventDTO {
 
     public EventDTO setUserId(UUID userId) {
         this.userId = userId;
+        return this;
+    }
+
+    public boolean isSoldOut() {
+        return soldOut;
+    }
+
+    public EventDTO setSoldOut(boolean soldOut) {
+        this.soldOut = soldOut;
         return this;
     }
 }

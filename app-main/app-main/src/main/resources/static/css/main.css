@@ -21,7 +21,7 @@ body {
 /* -------------------------- NAVBAR ---------------------------- */
 
 .index-header {
-    background-image: url('/static/images/image1-main.png');
+    background-image: url('/images/image1-main.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -818,7 +818,9 @@ th, td {
   padding-bottom: 30rem;
 
   z-index: 1;
-  background: linear-gradient(90deg, rgba(96,0,130,1) 0%, rgba(159,47,142,1) 49%, rgba(0,210,252,1) 100%);
+  /* background: linear-gradient(90deg, rgba(96,0,130,1) 0%, rgba(159,47,142,1) 49%, rgba(0,210,252,1) 100%); */
+
+  background-color: (203, 232, 248);
 
 }
 
@@ -1173,6 +1175,12 @@ background: linear-gradient(90deg, rgba(153,2,8,1) 0%, rgba(121,9,68,1) 53%, rgb
 .details-hall {
   font-size: 1.8rem;
   margin: 1.3rem 0;
+  font-weight: 500;
+}
+
+.details-name {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
 }
 
 
@@ -1211,6 +1219,12 @@ background: linear-gradient(90deg, rgba(153,2,8,1) 0%, rgba(121,9,68,1) 53%, rgb
 /* ^^^^^ ---------------------------------------  BUY TICKET  -------------------------------------- */
 /* ^^^^^ ---------------------------------------  BUY TICKET  -------------------------------------- */
 /* ^^^^^ ---------------------------------------  BUY TICKET  -------------------------------------- */
+
+/* ------------------------------------------  ATTEND EVENT PAGE  -------------------------------------- */
+/* ------------------------------------------  ATTEND EVENT PAGE  -------------------------------------- */
+/* ------------------------------------------  ATTEND EVENT PAGE  -------------------------------------- */
+/* ------------------------------------------  ATTEND EVENT PAGE  -------------------------------------- */
+
 
 
 
@@ -1325,3 +1339,156 @@ background: linear-gradient(90deg, rgba(153,2,8,1) 0%, rgba(121,9,68,1) 53%, rgb
   background-color: #9b9b9b;
   color: white;
 }
+
+
+/* ^^^^^----------------------------------------  ATTEND EVENT PAGE  -------------------------------------- */
+/* ^^^^^----------------------------------------  ATTEND EVENT PAGE  -------------------------------------- */
+/* ^^^^^----------------------------------------  ATTEND EVENT PAGE  -------------------------------------- */
+/* ^^^^^----------------------------------------  ATTEND EVENT PAGE  -------------------------------------- */
+
+/* ------------------------------------------  FEATURED EVENTS  -------------------------------------- */
+/* ------------------------------------------  FEATURED EVENTS  -------------------------------------- */
+/* ------------------------------------------  FEATURED EVENTS  -------------------------------------- */
+/* ------------------------------------------  FEATURED EVENTS  -------------------------------------- */
+
+
+.e-list-background {
+  height: 100%;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-bottom: 30rem;
+
+  z-index: 1;
+  /* background: linear-gradient(90deg, rgba(96,0,130,1) 0%, rgba(159,47,142,1) 49%, rgba(0,210,252,1) 100%); */
+
+  background-color: (203, 232, 248);
+
+}
+
+.el-intro-container {
+  z-index: 2;
+  margin: 7rem 0 0;
+  padding: 1.5rem 20%;
+
+  display: flex;
+  flex-direction: row;
+
+  color: white;
+  background-color: rgba(31, 31, 31, 0.8);
+}
+
+.e-list-intro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.e-list-intro :nth-child(1) {
+  font-size: 2.5rem;
+}
+
+.e-list-intro :nth-child(2), .e-list-intro :nth-child(3) {
+  font-size: 1.2rem;
+}
+
+.e-list-intro :nth-child(4) {
+  font-size: 2rem;
+  margin-top: 4rem;
+}
+
+.e-list-container {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  margin-bottom: 5rem;
+
+  min-width: 70%;
+}
+
+
+.e-list-h {
+  position: relative;
+  align-self: center;
+  text-align: center;
+  z-index: 2;
+  min-width: 90%;
+  max-width: 90%;
+  padding: 2rem 1rem;
+  margin: 1.5rem 0;
+
+  background-color: #352B2A;
+background: linear-gradient(90deg, rgb(2, 153, 10) 0%, rgb(46, 175, 175) 53%, rgb(88, 86, 207) 100%);
+  color:rgba(31, 31, 31, 1);
+  border: none;
+  border-radius: 0.7rem;
+}
+
+/* .h-list-h:hover {
+
+  background-color: #f0f0f0;
+  color: #352B2A;
+  border-radius: 1rem;
+
+  cursor: pointer;
+  border: 2px solid black;
+} */
+
+.e-list-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgba(31, 31, 31, 0.98);
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border: none;
+  border-radius: 0.7rem;
+
+}
+
+.e-list-overlay:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.e-name {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
+.e-organ {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
+.e-date {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.7rem;
+}
+
+.e-desc {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+
+
+/*  ^^^^^----------------------------------------  FEATURED EVENTS  -------------------------------------- */
+/*  ^^^^^----------------------------------------  FEATURED EVENTS  -------------------------------------- */
+/*  ^^^^^----------------------------------------  FEATURED EVENTS  -------------------------------------- */
+/*  ^^^^^----------------------------------------  FEATURED EVENTS  -------------------------------------- */
+

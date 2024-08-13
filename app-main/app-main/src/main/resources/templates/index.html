@@ -25,11 +25,13 @@
         <nav class="nav-bar">
             <div class="shadow-overlay">
                 <ul class="header-nav">
-                    <li class="btn-holder"><button class="cc-logo"><img src="\static\images\cc-logo.png" alt="img"></li>
+                    <li class="btn-holder"><button class="cc-logo"
+                    th:onclick="'window.location.href=\'/' + '\';'"><img src="/images/cc-logo.png" alt="img"></li>
                     <li class="btn-holder halls">
                         <button class="nav-button"
                                 th:onclick="'window.location.href=\'/halls' + '\';'">Halls</button></li>
-                    <li class="btn-holder"><button class="nav-button">Featured Events</button></li>
+                    <li class="btn-holder"><button class="nav-button"
+                    th:onclick="'window.location.href=\'/events/featured' + '\';'">Featured Events</button></li>
                     <li class="btn-holder">
                         <button class="nav-button"
                                 th:onclick="'window.location.href=\'/event/plan' + '\';'">Plan Your Event</button></li>
@@ -43,7 +45,7 @@
                     <li class="btn-holder">
                         <div class="lang-div">
                             <button class="language-select">
-                                <img src="\static\images\lang-uk.png" alt="img">
+                                <img src="/images/lang-uk.png" alt="img">
                             </button>
                         </div>
                     </li>
@@ -171,7 +173,7 @@
 
     <footer class="site-footer">
         <div class="footer-holder">
-            <figure class="footer-logo"><img src="\static\images\cc-logo.png" alt="img"></figure>
+            <figure class="footer-logo"><img src="/images/cc-logo.png" alt="img"></figure>
             <p class="footer-text-upper">
                 The Cartland Convention Center is owned and proudly managed by Highland Holdings. We leverage the skills and talant of our
                 partners to ensure an exciting and sustainable future.
@@ -181,7 +183,7 @@
             </p>
         </div>
         <div class="footer-logo">
-            <img src="\static\images\green-logo.png" alt="greenlogo">
+            <img src="/images/green-logo.png" alt="greenlogo">
         </div>
         <div class="footer-right">
             <ul>

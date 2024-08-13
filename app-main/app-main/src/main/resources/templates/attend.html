@@ -123,7 +123,9 @@
                 th:method="GET">
                     <div class="form-group">
                         <label for="eventCode">Event Code</label>
-                        <input type="text" id="eventCode" th:name="eventCode"
+                        <input type="text"
+                               required
+                               id="eventCode" th:name="eventCode"
                             placeholder="Enter an event code">
                         <input class="att-event-btn"
                                 type="submit" value="Search for Event">

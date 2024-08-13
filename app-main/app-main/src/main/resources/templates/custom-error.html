@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/main.css" />
 
-    <meta http-equiv="refresh" content="6; URL=http://localhost:8080/" />
     <title>Booking Created</title>
     <style>
         .bc-main-container {
             border: none;
             margin-top: 15%;
+            border: none;
         }
 
     </style>
@@ -51,9 +51,14 @@
 
 <div class="bc-main-container">
     <div class="bc-event-info">
-        <div class="ec-success">
-            Your event was booked successfully! Check your email for details. You will be redirected shortly.
+        <div class="error-msg"
+        th:text="${message}">
+            Ooops... We have encountered an issue. We are working hard to resolve this. Sorry..
         </div>
+        <button class="err-home"
+                th:onclick="'window.location.href=\'/event/attend' + '\';'"> TRY AGAIN </button>
+        <button class="err-home"
+                th:onclick="'window.location.href=\'/' + '\';'"> GO TO HOMEPAGE </button>
     </div>
 </div>
 

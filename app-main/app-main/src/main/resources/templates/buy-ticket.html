@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="\static\css\main.css" />
     <link rel="stylesheet" href="\static\css\navbar.css" />
 
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+
     <style>
         .form-area {
             width: 100%;
@@ -109,9 +113,14 @@
     </nav>
 
     <div class="bt-left">
-        <div class="details-date">SEPTEMBER 20</div>
-        <div class="details-hall"> PLATFORM 80 </div>
-        <div class="dr-description">
+        <div class="details-date"
+        th:text="${event.getDateString()}">SEPTEMBER 20</div>
+        <div class="details-hall"
+        th:text="${event.getHallName()}"> PLATFORM 80 </div>
+        <div class="details-name"
+             th:text="${event.getName()}"> EVENT NAME </div>
+        <div class="dr-description"
+        th:text="${event.getDescription()}">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam nam nulla natus tempore libero repellendus ipsa. Incidunt aliquid facilis sequi magnam tenetur, officia reprehenderit dolor! Ducimus eveniet accusantium quisquam maiores!
             Lorem ipsum dolor, eaque. Fugiat, quas. Fugiat magni sunt natus laboriosam mollitia reiciendis debitis velit.
         </div>
@@ -119,8 +128,8 @@
     
     <div class="bt-right">
         <h2>Buy Ticket</h2>
-        <form th:action="@{/calendar/book}" method="GET"
-        th:object="${eventDTO}">
+        <form th:action="@{/}" method="GET"
+        th:object="${ticketDTO}">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
                 <input type="text" id="firstName" th:name="firstName" th:field="*{firstName}"
@@ -143,7 +152,7 @@
                 <label for="paymentInfo">Payment Details</label>
                 <input type="text" id="paymentInfo" th:name="paymentInfo" 
                     placeholder="Enter your payment information">
-                <input class="bt-last-input" type="text" id="cardCode" th:name="paymentInfo"
+                <input class="bt-last-input" type="text" id="cardCode" th:name="cardCode"
                     placeholder="Card code">
             </div>
 

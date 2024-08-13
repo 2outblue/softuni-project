@@ -5,32 +5,40 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.ngfrt.appmain.model.dto.DateDTO;
 import com.ngfrt.appmain.model.dto.EventDTO;
+import com.ngfrt.appmain.model.dto.EventInfoDTO;
+import com.ngfrt.appmain.model.mapper.EventMapper;
+import com.ngfrt.appmain.service.exception.EventNotFoundException;
 import com.ngfrt.appmain.service.exception.EventServiceException;
 import com.ngfrt.appmain.util.gson.LocalDateAdapter;
-import jakarta.transaction.Transactional;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class EventService {
 
+    private final HallService hallService;
     private RestTemplate restTemplate;
     private final String eventServiceUrl;
+    private final EventMapper eventMapper;
 
     public EventService(RestTemplate restTemplate,
-                        @Value("${api.event.service.url}") String eventServiceUrl) {
+                        @Value("${api.event.service.url}") String eventServiceUrl, EventMapper eventMapper, HallService hallService) {
         this.restTemplate = restTemplate;
         this.eventServiceUrl = eventServiceUrl;
+        this.eventMapper = eventMapper;
+        this.hallService = hallService;
     }
 
     public List<EventDTO> getAllEvents() {
@@ -41,6 +49,30 @@ public class EventService {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();
         return gson.fromJson(response, new TypeToken<List<EventDTO>>(){}.getType());
+    }
+
+    public EventInfoDTO getEventByUuid(String uuidString) {
+
+        try {
+            UUID.fromString(uuidString);
+        } catch (IllegalArgumentException ex) {
+            throw new EventNotFoundException("Event with code " + uuidString + " not found. It looks like this is an invalid Event code, please make sure you are providing a correct Event code");
+        }
+        UUID uuid = UUID.fromString(uuidString);
+        HttpEntity<UUID> request = new HttpEntity<>(uuid);
+
+        String url = eventServiceUrl + "/" + uuid;
+        try {
+            ResponseEntity<EventDTO> response = restTemplate.exchange(url, HttpMethod.GET, request, EventDTO.class);
+            return eventMapper.toEventInfoDTO(response.getBody(), hallService);
+
+        } catch (HttpClientErrorException ex) {
+            if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+                throw new EventNotFoundException("Event with code " + uuid + " not found.");
+            } else {
+                throw new EventServiceException("Event operation failed", ex.getStatusCode().value());
+            }
+        }
     }
 
     public EventDTO mapDate(EventDTO eventDTO, DateDTO dateDTO){
@@ -57,5 +89,15 @@ public class EventService {
         if (!response.getStatusCode().is2xxSuccessful()) {
             throw new EventServiceException("Failed event operation", response.getStatusCode().value());
         }
+    }
+
+
+    public boolean isUUid(String input) {
+        // Compile regular expression
+        final Pattern pattern = Pattern.compile("([A-Za-z0-9]+(-[A-Za-z0-9]+)+)", Pattern.CASE_INSENSITIVE);
+        // Match regex against input
+        final Matcher matcher = pattern.matcher(input);
+        // Use results...
+        return matcher.matches();
     }
 }

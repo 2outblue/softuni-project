@@ -1,0 +1,33 @@
+spring:
+  jpa:
+    show-sql: true
+    open-in-view: 'false'
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: 'TRUE'
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: never
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  datasource:
+    username: ${MYSQL_USERNAME1:root}
+    url: jdbc:mysql://localhost:3306/event-service?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    password: ${MYSQL_PASS1:1q2w3e4r}
+    default.admin.pass: ${DEFAULT_ADMIN_PASS}
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.arm.jdbc.bind: ERROR
+    org.springframework.security: ERROR
+
+server:
+  port: 8090

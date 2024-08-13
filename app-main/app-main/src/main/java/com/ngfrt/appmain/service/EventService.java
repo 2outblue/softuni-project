@@ -22,8 +22,6 @@ import org.springframework.web.client.RestTemplate;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class EventService {
@@ -49,7 +47,7 @@ public class EventService {
         return gson.fromJson(response, new TypeToken<List<EventDTO>>(){}.getType());
     }
 
-    public EventInfoDTO getEventByUuid(String uuidString) {
+    public EventInfoDTO getEventByUuidString(String uuidString) {
 
         try {
             UUID.fromString(uuidString);

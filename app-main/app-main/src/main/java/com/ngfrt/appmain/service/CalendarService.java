@@ -1,8 +1,21 @@
 package com.ngfrt.appmain.service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.ngfrt.appmain.config.SecurityConfiguration;
+import com.ngfrt.appmain.model.dto.EventCalendarDTO;
+import com.ngfrt.appmain.model.dto.EventDTO;
+import com.ngfrt.appmain.model.dto.EventInfoDTO;
+import com.ngfrt.appmain.model.mapper.EventMapper;
 import com.ngfrt.appmain.util.calendar.Day;
+import com.ngfrt.appmain.util.gson.LocalDateAdapter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -13,16 +26,22 @@ import java.util.List;
 public class CalendarService {
 
 
-    private final SecurityConfiguration securityConfiguration;
+    private final RestTemplate restTemplate;
+    private final String eventServiceUrl;
+    private final EventMapper eventMapper;
 
-    public CalendarService(SecurityConfiguration securityConfiguration) {
-        this.securityConfiguration = securityConfiguration;
+    public CalendarService(RestTemplate restTemplate,
+                           @Value("${api.event.service.url}") String eventServiceUrl, EventMapper eventMapper) {
+        this.restTemplate = restTemplate;
+        this.eventServiceUrl = eventServiceUrl;
+        this.eventMapper = eventMapper;
     }
 
     public List<List<Day>> getWeeksForMonth(YearMonth yearMonthInput) {
         // instead of having a Week class just for that
         List<List<Day>> weeks = new ArrayList<>();
         List<Day> week = new ArrayList<>();
+        List<EventCalendarDTO> eventsForSelectedMonth = getEventsForYearAndMonth(yearMonthInput.getYear(), yearMonthInput.getMonthValue());
 
         // first and last days of the month
         LocalDate firstDayOfMonth = yearMonthInput.atDay(1);
@@ -33,7 +52,7 @@ public class CalendarService {
         // able to select days starting from the first sunday only (which may be the 7th day of
         //  the month... and the user wont be able to select days 1 - 6), so - generate the days
         // of the previous month to fill the table cells remaining to the first day of
-        // the input month and generate the first day/s on the input month to the first sunday...
+        // the input month and generate the first day/s on the input month to the first sunday..
         if (firstDayOfMonth.getDayOfWeek().getValue() != 7) {
             int dayOfWeek = firstDayOfMonth.getDayOfWeek().getValue();
             int difference = 7 - dayOfWeek;
@@ -63,7 +82,7 @@ public class CalendarService {
 //                if (yearMonthInput.getMonthValue() < LocalDate.now().getMonthValue()) {
 //                    disabled = true;
 //                }
-                week.add(new Day(i, disabled));
+                week.add(createDay(eventsForSelectedMonth, i, disabled));
             }
             weeks.add(week);
             week = new ArrayList<>();
@@ -75,14 +94,16 @@ public class CalendarService {
         while (!current.isAfter(lastDayOfMonth)) {
             // TODO: implement filtering logic for event info
 
+
             // Disable days if they are in the past
             boolean disabled = false;
             if (((current.getDayOfMonth() <= LocalDate.now().getDayOfMonth() && yearMonthInput.getMonthValue() <= LocalDate.now().getMonthValue())  ||
                     yearMonthInput.getMonthValue() < LocalDate.now().getMonthValue()) && yearMonthInput.getYear() <= LocalDate.now().getYear()) {
                 disabled = true;
             }
+
             // add the day to the week
-            week.add(new Day(current.getDayOfMonth(), disabled));
+            week.add(createDay(eventsForSelectedMonth, current.getDayOfMonth(), disabled));
 
             // start a new week on saturday
             if (current.getDayOfWeek() == java.time.DayOfWeek.SATURDAY) {
@@ -99,5 +120,30 @@ public class CalendarService {
         }
 
         return weeks;
+    }
+
+
+    private List<EventCalendarDTO> getEventsForYearAndMonth(int year, int month) {
+        String url = String.format("%s/%d/%d",eventServiceUrl, year, month);
+
+        String response = restTemplate.getForObject(url, String.class);
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
+        List<EventDTO> entities = gson.fromJson(response, new TypeToken<List<EventDTO>>() {}.getType());
+
+        System.out.println();
+        System.out.println();
+        return entities != null ? entities.stream().map(eventMapper::toEventCalendarDTO).toList() : null;
+    }
+
+    private Day createDay(List<EventCalendarDTO> events, int currentDay, boolean disabled) {
+        Day d = new Day(currentDay, disabled);
+        if (events != null && !events.isEmpty()) {
+            List<EventCalendarDTO> eventL = events.stream().filter(e -> e.getDayOfMonth() == currentDay).toList();
+            if (!eventL.isEmpty()) {
+                d.setDisabled(true).setTextContent(eventL.getFirst().getName());
+            }
+        }
+        return d;
     }
 }

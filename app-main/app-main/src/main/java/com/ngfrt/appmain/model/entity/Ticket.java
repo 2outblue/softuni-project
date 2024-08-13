@@ -1,9 +1,11 @@
 package com.ngfrt.appmain.model.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.JoinColumnOrFormula;
 
 import java.sql.Types;
 import java.time.LocalDate;
@@ -16,11 +18,13 @@ public class Ticket extends BaseEntity {
     private UUID uuid;
     private String firstName;
     private String lastName;
+    private String eventName;
     private LocalDate eventDate;
-    private Integer seatingSection;
+    private String email;
+    private String hallName;
 
     @ManyToOne
-    private Hall hallUuid;
+    private Hall hall;
 
     public UUID getUuid() {
         return uuid;
@@ -49,6 +53,15 @@ public class Ticket extends BaseEntity {
         return this;
     }
 
+    public String getEventName() {
+        return eventName;
+    }
+
+    public Ticket setEventName(String eventName) {
+        this.eventName = eventName;
+        return this;
+    }
+
     public LocalDate getEventDate() {
         return eventDate;
     }
@@ -58,21 +71,30 @@ public class Ticket extends BaseEntity {
         return this;
     }
 
-    public Integer getSeatingSection() {
-        return seatingSection;
+    public String getEmail() {
+        return email;
     }
 
-    public Ticket setSeatingSection(Integer seatingSection) {
-        this.seatingSection = seatingSection;
+    public Ticket setEmail(String email) {
+        this.email = email;
         return this;
     }
 
-    public Hall getHallUuid() {
-        return hallUuid;
+    public String getHallName() {
+        return hallName;
     }
 
-    public Ticket setHallUuid(Hall hallUuid) {
-        this.hallUuid = hallUuid;
+    public Ticket setHallName(String hallName) {
+        this.hallName = hallName;
+        return this;
+    }
+
+    public Hall getHall() {
+        return hall;
+    }
+
+    public Ticket setHall(Hall hall) {
+        this.hall = hall;
         return this;
     }
 }

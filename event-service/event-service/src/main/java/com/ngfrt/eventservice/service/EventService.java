@@ -85,6 +85,12 @@ public class EventService {
         return mapToDTOs(eventEntities);
     }
 
+    public List<EventDTO> getByYearAndMonth(int year, int month) {
+        List<Event> eventEntities = eventRepository.findAllByYearAndMonth(year, month);
+
+        return mapToDTOs(eventEntities);
+    }
+
 
     private List<EventDTO> mapToDTOs(List<Event> eventEntities){
         return eventEntities.stream()

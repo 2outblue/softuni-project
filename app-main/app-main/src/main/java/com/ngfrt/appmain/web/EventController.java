@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.UUID;
 
 
 @Controller
@@ -43,22 +42,27 @@ public class EventController {
     }
 
     @GetMapping("/search")
-    public ModelAndView searchEvent(@RequestParam(required = false) String eventCode, Model model) {
-
-        EventInfoDTO eventInfo = eventService.getEventByUuid(eventCode);
+    public ModelAndView searchEvent(@RequestParam(required = false) String eventCode,
+                                    Model model) {
+        EventInfoDTO eventInfo = eventService.getEventByUuidString(eventCode);
         model.addAttribute("event", eventInfo);
 
         return new ModelAndView("event-details");
     }
 
     @GetMapping("/purchase")
-    public ModelAndView buyTicket(@RequestParam(required = false) String eventCode, Model model) {
+    public ModelAndView buyTicketForm(@RequestParam(required = false) String eventCode, Model model) {
 
-        EventInfoDTO eventInfo = eventService.getEventByUuid(eventCode);
+        EventInfoDTO eventInfo = eventService.getEventByUuidString(eventCode);
         if (eventInfo.isSoldOut()) {
             throw new EventNotFoundException("This event is sold out!");
         }
-        model.addAttribute("ticketDTO", new TicketDTO());
+        TicketDTO ticketDTO = new TicketDTO()
+                .setEventDate(eventInfo.getDate())
+                .setEventName(eventInfo.getName())
+                .setHallName(eventInfo.getHallName())
+                .setHallUuid(eventInfo.getHallUuid());
+        model.addAttribute("ticketDTO", ticketDTO);
         model.addAttribute("event", eventInfo);
 
         return new ModelAndView("buy-ticket");

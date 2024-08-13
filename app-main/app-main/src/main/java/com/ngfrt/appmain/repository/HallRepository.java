@@ -10,6 +10,6 @@ import java.util.UUID;
 public interface HallRepository extends JpaRepository<Hall, Long> {
 
     Hall getByNumber(Integer number);
-
     Hall getByUuid(UUID uuid);
+    Hall getByName(String name);
 }

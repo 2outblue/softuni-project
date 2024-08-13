@@ -2,6 +2,8 @@ package com.ngfrt.eventservice.repository;
 
 import com.ngfrt.eventservice.model.entity.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +21,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findAllByHallId(UUID uuid);
 
     List<Event> findAllByFeatured(boolean featured);
+
+    @Query("SELECT e FROM Event e WHERE YEAR(e.date) = :year AND MONTH(e.date) = :month")
+    List<Event> findAllByYearAndMonth(@Param("year") int year, @Param("month") int month);
 }

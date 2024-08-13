@@ -52,6 +52,13 @@ public class EventController {
         return ResponseEntity.ok(eventService.getFeaturedEvents());
     }
 
+    @GetMapping("/{year}/{month}")
+    public ResponseEntity<List<EventDTO>> getEventsByYearAndMonth(@PathVariable int year,
+                                                                  @PathVariable int month) {
+
+        return ResponseEntity.ok(eventService.getByYearAndMonth(year, month));
+    }
+
     @DeleteMapping("/{uuid}")
     public ResponseEntity<EventDTO> deleteEvent(@PathVariable UUID uuid) {
         Optional<EventDTO> eventDTO = eventService.getEventByUuid(uuid);

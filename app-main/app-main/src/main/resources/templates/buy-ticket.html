@@ -114,13 +114,13 @@
 
     <div class="bt-left">
         <div class="details-date"
-        th:text="${event.getDateString()}">SEPTEMBER 20</div>
+        th:text="${ticketDTO.getDateString()}">SEPTEMBER 20</div>
         <div class="details-hall"
-        th:text="${event.getHallName()}"> PLATFORM 80 </div>
+        th:text="${ticketDTO.getHallName()}"> PLATFORM 80 </div>
         <div class="details-name"
-             th:text="${event.getName()}"> EVENT NAME </div>
+             th:text="${ticketDTO.getEventName()}"> EVENT NAME </div>
         <div class="dr-description"
-        th:text="${event.getDescription()}">
+        th:text="${event.description}">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam nam nulla natus tempore libero repellendus ipsa. Incidunt aliquid facilis sequi magnam tenetur, officia reprehenderit dolor! Ducimus eveniet accusantium quisquam maiores!
             Lorem ipsum dolor, eaque. Fugiat, quas. Fugiat magni sunt natus laboriosam mollitia reiciendis debitis velit.
         </div>
@@ -128,8 +128,12 @@
     
     <div class="bt-right">
         <h2>Buy Ticket</h2>
-        <form th:action="@{/}" method="GET"
+        <form th:action="@{/ticket/purchase}" method="POST"
         th:object="${ticketDTO}">
+            <input type="hidden" name="eventDate" th:field="*{eventDate}">
+            <input type="hidden" th:field="*{hallName}">
+            <input type="hidden" name="eventName" th:field="*{eventName}">
+            <input type="hidden" name="hallUuid" th:field="*{hallUuid}">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
                 <input type="text" id="firstName" th:name="firstName" th:field="*{firstName}"

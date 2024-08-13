@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/background.css" />
+
+    <script>
+        function setDayOfMonth(day) {
+            document.getElementById('dayOfMonth').value = day;
+        }
+    </script>
 </head>
 <body>
 <div class="background-overlay"></div>
@@ -39,7 +45,12 @@
     th:method="GET"
     th:action="@{/calendar/book}"
     class="cal-form">
-    
+    <input type="hidden" name="hallId" th:value="${event.hallId}">
+    <input type="hidden" name="name" th:value="${event.name}">
+    <input type="hidden" name="description" th:value="${event.description}">
+    <input type="hidden" name="organizer" th:value="${event.organizer}">
+    <input type="hidden" name="phoneNumber" th:value="${event.phoneNumber}">
+    <input type="hidden" name="hallName" th:value="${hallName}">
     <div class="cal-select-container">
         <h2 class="cal-select-info">Select Year and Month</h2>
         <div class="cal-select-date">
@@ -69,7 +80,9 @@
             </button>
         </div>
     </div>
-    
+</form>
+
+
     <div class="cal-container">
         <main class="cal-main">
             <div class="booking-tracker">
@@ -101,7 +114,17 @@
                     <div id="tracker-phone" th:text="${event.getPhoneNumber()}">Not provided</div>
                 </div>
             </div>
-    
+
+            <form th:action="@{/event/finalize}" th:method="GET">
+                <input type="hidden" name="hallId" th:value="${event.hallId}">
+                <input type="hidden" name="name" th:value="${event.name}">
+                <input type="hidden" name="description" th:value="${event.description}">
+                <input type="hidden" name="organizer" th:value="${event.organizer}">
+                <input type="hidden" name="phoneNumber" th:value="${event.phoneNumber}">
+                <input type="hidden" name="year" th:value="${year}">
+                <input type="hidden" name="monthValue" th:value="${monthNumber}">
+                <input type="hidden" name="hallName" th:value="${hallName}">
+                <input type="hidden" id="dayOfMonth" name="dayOfMonth" value="">
             <table>
                 <thead>
                 <tr class="cal-weekdays">
@@ -115,33 +138,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="week : ${weeks}">
-                    <td th:each="day : ${week}"
-                        th:class="${day.disabled} ? 'day-cell disabled' : 'day-cell'">
-                        <form th:action="@{/event/finalize}" th:method="GET">
-                            <input type="hidden" name="hallId" th:value="${event.hallId}">
-                            <input type="hidden" name="name" th:value="${event.name}">
-                            <input type="hidden" name="description" th:value="${event.description}">
-                            <input type="hidden" name="organizer" th:value="${event.organizer}">
-                            <input type="hidden" name="phoneNumber" th:value="${event.phoneNumber}">
-                            <input type="hidden" name="year" th:value="${year}">
-                            <input type="hidden" name="monthValue" th:value="${monthNumber}">
-                            <input type="hidden" name="dayOfMonth" th:value="${day.dayOfMonth}">
-                            <input type="hidden" name="hallName" th:value="${hallName}">
-                            <button th:class="${day.disabled} ? 'ic-container disabled' : 'ic-container'">
-                                <div class="hover-overlay-date">SELECT DATE AND PROCEED</div>
-                                <div class="ic-info">Some info?</div>
-                                <div class="ic-day" th:text="${day.dayOfMonth}"></div>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                </tbody>
+                    <tr th:each="week : ${weeks}">
+                        <td th:each="day : ${week}"
+                            th:class="${day.disabled} ? 'day-cell disabled' : 'day-cell'">
+                                <button type="submit" th:class="${day.disabled} ? 'ic-container disabled' : 'ic-container'"
+                                        th:onclick="'setDayOfMonth(' + ${day.dayOfMonth} + ');'">
+                                    <div class="hover-overlay-date">SELECT DATE AND PROCEED</div>
+                                    <div class="ic-info" th:text="${day.textContent}">Some info?</div>
+                                    <div class="ic-day" th:text="${day.dayOfMonth}"></div>
+                                </button>
+                        </td>
+                    </tr>
+            </tbody>
             </table>
+            </form>
         </main>
     </div>
-
-</form>
 
 
 <footer class="site-footer">

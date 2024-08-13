@@ -40,7 +40,7 @@
         th:text="${event.getDateString()}">SEPTEMBER 20</div>
         <div class="details-hall"
         th:text="${event.hallName}"> PLATFORM 80 </div>
-        <form class="details-btn" th:action="@{/event/purchase}">
+        <form class="details-btn" th:action="@{/event/purchase}" th:method="GET">
             <input type="hidden" name="eventCode" th:value="${event.getUuidString()}">
             <button
                     th:class="${event.soldOut} ? 'disabled' : ''"

@@ -35,6 +35,9 @@
                     <li class="btn-holder">
                         <button class="nav-button"
                                 th:onclick="'window.location.href=\'/event/plan' + '\';'">Plan Your Event</button></li>
+                    <li class="btn-holder">
+                        <button class="nav-button"
+                                th:onclick="'window.location.href=\'/event/attend' + '\';'">Attend</button></li>
                     <li class="btn-holder login">
                         <button class="nav-button"
                                 th:onclick="'window.location.href=\'/login' + '\';'">Login</button></li>
@@ -142,13 +145,13 @@
     
     <div class="box-container-2">
         <button class="index-box-p"
-                th:onclick="'window.location.href=\'/event/attend' + '\';'">
+                th:onclick="'window.location.href=\'/event/plan' + '\';'">
             <div class="index-box-header">Plan</div>
             <div class="index-box-p-image"></div>
             <div class="hover-overlay-plan">PLAN YOUR EVENT</div>
         </button>
         <button class="index-box-att"
-                th:onclick="'window.location.href=\'/event/plan' + '\';'">
+                th:onclick="'window.location.href=\'/event/attend' + '\';'">
             <div class="index-box-header">Attend</div>
             <div class="index-box-att-image"></div>
             <div class="hover-overlay-att">BUY A TICKET</div>

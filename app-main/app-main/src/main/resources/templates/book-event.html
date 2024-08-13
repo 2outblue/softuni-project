@@ -120,16 +120,6 @@
         text-align: right;
       }
     </style>
-    <!-- <script>
-        // JavaScript to update the tracker in real-time
-        function updateTracker() {
-            document.getElementById('tracker-hall').textContent = document.getElementById('hall').selectedOptions[0].textContent || 'None';
-            document.getElementById('tracker-event-name').textContent = document.getElementById('eventName').value || 'Not provided';
-            document.getElementById('tracker-description').textContent = document.getElementById('description').value || 'Not provided';
-            document.getElementById('tracker-organizer').textContent = document.getElementById('organizer').value || 'Not provided';
-            document.getElementById('tracker-phone').textContent = document.getElementById('phoneNumber').value || 'Not provided';
-        }
-    </script> -->
 </head>
 
 <body>
@@ -164,7 +154,7 @@
             th:object="${eventDTO}">
                 <div class="form-group">
                     <label for="hallId">Select Hall:</label>
-                    <select id="hallId" name="hallId" th:field="*{hallId}">
+                    <select id="hallId" name="hallId" th:field="*{hallId}" required>
                         <option value="">-- Select a Hall --</option>
                         <option th:each="hall : ${halls}" th:value="${hall.uuid}" th:text="${hall.name}"></option>
                     </select>

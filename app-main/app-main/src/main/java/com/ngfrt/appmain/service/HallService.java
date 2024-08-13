@@ -38,6 +38,15 @@ public class HallService {
         return hallRepository.getByUuid(uuid).getName();
     }
 
+    public UUID getHallUuidByName(String name) {
+
+        Hall entity = hallRepository.getByName(name);
+        if (entity != null) {
+            return entity.getUuid();
+        }
+        return null;
+    }
+
     public List<HallListingDTO> getAllHallsForListing() {
         return hallRepository.findAll().stream().map(hallMapper::toHallListingDTO)
                 .collect(Collectors.toList());

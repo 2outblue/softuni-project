@@ -13,6 +13,7 @@ public class EventInfoDTO {
     private LocalDate date;
     private String organizer;
     private String hallName;
+    private UUID hallUuid;
     private boolean soldOut;
 
     public String getDateString() {
@@ -77,6 +78,15 @@ public class EventInfoDTO {
 
     public EventInfoDTO setHallName(String hallName) {
         this.hallName = hallName;
+        return this;
+    }
+
+    public UUID getHallUuid() {
+        return hallUuid;
+    }
+
+    public EventInfoDTO setHallUuid(UUID hallUuid) {
+        this.hallUuid = hallUuid;
         return this;
     }
 

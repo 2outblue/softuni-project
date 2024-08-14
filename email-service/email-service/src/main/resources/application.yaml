@@ -1,0 +1,6 @@
+#spring.application.name=email-service
+
+api.email.sender-address: ${EMAIL_SENDER_ADDRESS:affngfrt@gmail.com}
+
+server:
+  port: 8099

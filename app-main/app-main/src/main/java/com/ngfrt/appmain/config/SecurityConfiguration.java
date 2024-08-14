@@ -21,7 +21,18 @@ public class SecurityConfiguration {
                         .requestMatchers("/**", "/error").permitAll()
                         .anyRequest().authenticated()
 
-        );
+        ).formLogin(formLogin -> {
+           formLogin.loginPage("/user/login")
+                   .usernameParameter("email")
+                   .passwordParameter("password")
+                   .defaultSuccessUrl("/")
+                   .failureForwardUrl("/user/login-error");
+        }).logout(logout -> {
+            logout
+                    .logoutUrl("/user/logout")
+                    .logoutSuccessUrl("/")
+                    .invalidateHttpSession(true);
+        });
 
         return http.build();
     }

@@ -24,7 +24,7 @@ public interface EventMapper {
     EventCalendarDTO toEventCalendarDTO(EventDTO event);
 
     @Named("mapHallIdToHallName")
-    public static String mapHallIdToHallName(UUID uuid, @Context HallService hallService) {
+    static String mapHallIdToHallName(UUID uuid, @Context HallService hallService) {
         return hallService.getHallNameByUuid(uuid);
     }
 

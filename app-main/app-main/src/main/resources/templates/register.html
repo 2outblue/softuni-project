@@ -33,7 +33,9 @@
     <div class="main-container">
         <div class="form-holder">
       
-          <form action="" method="">
+          <form th:action="@{/user/register}"
+                th:method="POST"
+          th:object="${userRegisterDTO}">
             <div class="form-title">
               <h2 class="">Register and plan your first event</h2>
               <p>
@@ -46,18 +48,20 @@
                 <label for="firstname" class="input-label">
                   First name
                 </label>
-                <input
-                  type="text"
-                  name="firstname"
-                  id="firstname"
-                  class="input-field"
+                <input required
+                       type="text"
+                       th:name="firstName"
+                       th:field="*{firstName}"
+                      id="firstname"
+                      class="input-field"
                 />
               </div>
               <div>
                 <label for="lastname" class="input-label"> Last name </label>
-                <input
+                <input required
                   type="text"
-                  name="lastname"
+                  th:name="lastName"
+                       th:field="*{lastName}"
                   id="lastname"
                   class="input-field"
                 />
@@ -67,9 +71,10 @@
             <div class="input-field-flex">
               <div>
                 <label for="email" class="input-label"> Email </label>
-                <input
+                <input required
                   type="email"
-                  name="email"
+                  th:name="email"
+                       th:field="*{email}"
                   id="email"
                   class="input-field"
                 />
@@ -78,7 +83,8 @@
                 <label for="phone" class="input-label"> Phone number </label>
                 <input
                   type="text"
-                  name="phone"
+                  th:name="phone"
+                  th:field="*{phone}"
                   id="phone"
                   class="input-field"
                 />
@@ -91,7 +97,8 @@
               </label>
               <input
                 type="password"
-                name="password"
+                th:name="password"
+                th:field="*{password}"
                 id="password"
                 class="input-field"
               />
@@ -103,7 +110,8 @@
               </label>
               <input
                 type="password"
-                name="confirmPassword"
+                th:name="confirmPassword"
+                th:field="*{confirmPassword}"
                 id="confirmPassword"
                 class="input-field"
               />

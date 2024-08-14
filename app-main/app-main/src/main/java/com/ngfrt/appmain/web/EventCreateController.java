@@ -60,7 +60,8 @@ public class EventCreateController {
 
     @PostMapping("/create")
     public ModelAndView createNewEvent(EventDTO eventDTO) {
-        eventService.createNewEvent(eventDTO);
+        String newEventUri = eventService.createNewEvent(eventDTO);
+
 
         return new ModelAndView("event-created");
     }

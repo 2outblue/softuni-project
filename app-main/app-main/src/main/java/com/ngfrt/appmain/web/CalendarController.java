@@ -43,7 +43,8 @@ public class CalendarController {
             monthValue = Calendar.getInstance().get(Calendar.MONTH) + 1;
         }
 
-        List<List<Day>> weeks = calendarService.getWeeksForMonth(YearMonth.of(year, monthValue));
+        List<List<Day>> weeks = calendarService
+                .getWeeksForMonth(YearMonth.of(year, monthValue), event.getHallId());
         model.addAttribute("monthNumber", monthValue);
         model.addAttribute("year", year);
         model.addAttribute("weeks", weeks);
@@ -57,7 +58,9 @@ public class CalendarController {
     public String chooseEventDate(EventDTO eventDTO,
                                   Model model) {
 
-        List<List<Day>> weeks = calendarService.getWeeksForMonth(YearMonth.of(Year.now().getValue(), Calendar.getInstance().get(Calendar.MONTH) + 1));
+        List<List<Day>> weeks = calendarService
+                .getWeeksForMonth(YearMonth.of(Year.now().getValue(), Calendar.getInstance().get(Calendar.MONTH) + 1),
+                eventDTO.getHallId());
 
         model.addAttribute("weeks", weeks);
         model.addAttribute("months", Month.getMonths());

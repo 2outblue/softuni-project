@@ -6,9 +6,11 @@ import com.google.gson.reflect.TypeToken;
 import com.ngfrt.appmain.model.dto.DateDTO;
 import com.ngfrt.appmain.model.dto.EventDTO;
 import com.ngfrt.appmain.model.dto.EventInfoDTO;
+import com.ngfrt.appmain.model.dto.TicketDTO;
 import com.ngfrt.appmain.model.mapper.EventMapper;
 import com.ngfrt.appmain.service.exception.EventNotFoundException;
 import com.ngfrt.appmain.service.exception.EventServiceException;
+import com.ngfrt.appmain.util.email.MailSender;
 import com.ngfrt.appmain.util.gson.LocalDateAdapter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -30,13 +32,15 @@ public class EventService {
     private RestTemplate restTemplate;
     private final String eventServiceUrl;
     private final EventMapper eventMapper;
+    private final MailSender mailSender;
 
     public EventService(RestTemplate restTemplate,
-                        @Value("${api.event.service.url}") String eventServiceUrl, EventMapper eventMapper, HallService hallService) {
+                        @Value("${api.event.service.url}") String eventServiceUrl, EventMapper eventMapper, HallService hallService, MailSender mailSender) {
         this.restTemplate = restTemplate;
         this.eventServiceUrl = eventServiceUrl;
         this.eventMapper = eventMapper;
         this.hallService = hallService;
+        this.mailSender = mailSender;
     }
 
     public List<EventDTO> getAllEvents() {
@@ -87,15 +91,38 @@ public class EventService {
     }
 
 
-    public void createNewEvent(EventDTO event) {
+    public String createNewEvent(EventDTO event) {
         HttpEntity<EventDTO> request = new HttpEntity<>(event);
-        ResponseEntity<String> response = restTemplate.exchange(eventServiceUrl, HttpMethod.POST, request, String.class);
+        ResponseEntity<EventDTO> response = restTemplate.exchange(eventServiceUrl, HttpMethod.POST, request, EventDTO.class);
 
         //TODO - throw a custom exception when an event is not found - catch it with controller advice
         // and display an error to the user that event with such id doesn't exists
-        if (!response.getStatusCode().is2xxSuccessful()) {
+        if (!response.getStatusCode().is2xxSuccessful() || response.getHeaders().getLocation() == null || response.getBody() == null) {
             throw new EventServiceException("Failed event operation", response.getStatusCode().value());
         }
+        sendNewEventEmail(response.getBody());
+
+        return response.getHeaders().getLocation().toString();
+    }
+
+    private boolean sendNewEventEmail(EventDTO event) {
+        //TODO - Get the user email address from the user uuid and send email to it.
+        return false;
+    }
+
+    private String emailBuilder(EventDTO event) {
+        //TODO get the hall name from the uuid and send the hall name instead of ID as it is now
+        return String.format("Your Event:\n" +
+                        "Event name: %s\n" +
+                        "Date: %s\n" +
+                        "Hall: %s\n" +
+                        "Event Code (Supply this code to the attendees if your event is not public, or call the below number to make a group ticket booking): \n%s\n" +
+                        "Group tickets number: +0700091280\n\n\n" +
+                        "Contact our Logistics team at +0700090080 if you need to bring in large decor/exhibition pieces\n" +
+                        "In case of any issues you can contact us at support@cartlandcc.support.com or +0700091080\n\n\n" +
+                        "Best regards,\n" +
+                        "The Cartland Convention Center",
+                event.getName(), event.getDate().toString(), event.getHallId(), event.getUuid());
     }
 
 }

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html
+        xmlns:th="https://www.thymeleaf.org/"
+        xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,12 +40,14 @@
                     <li class="btn-holder">
                         <button class="nav-button"
                                 th:onclick="'window.location.href=\'/event/attend' + '\';'">Attend</button></li>
-                    <li class="btn-holder login">
+                    <li class="btn-holder login"
+                    sec:authorize="!isAuthenticated()">
                         <button class="nav-button"
-                                th:onclick="'window.location.href=\'/login' + '\';'">Login</button></li>
-                    <li class="btn-holder register">
+                                th:onclick="'window.location.href=\'/user/login' + '\';'">Login</button></li>
+                    <li class="btn-holder register"
+                        sec:authorize="!isAuthenticated()">
                         <button class="nav-button"
-                                th:onclick="'window.location.href=\'/users/register' + '\';'">Register</button></li>
+                                th:onclick="'window.location.href=\'/user/register' + '\';'">Register</button></li>
 
                     <li class="btn-holder">
                         <div class="lang-div">

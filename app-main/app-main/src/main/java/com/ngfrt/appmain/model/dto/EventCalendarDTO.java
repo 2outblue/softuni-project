@@ -1,10 +1,13 @@
 package com.ngfrt.appmain.model.dto;
 
+import java.util.UUID;
+
 public class EventCalendarDTO {
 
     private String name;
     private boolean featured;
     private int dayOfMonth;
+    private UUID hallId;
 
     public String getName() {
         return name;
@@ -30,6 +33,15 @@ public class EventCalendarDTO {
 
     public EventCalendarDTO setDayOfMonth(int dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
+        return this;
+    }
+
+    public UUID getHallId() {
+        return hallId;
+    }
+
+    public EventCalendarDTO setHallId(UUID hallId) {
+        this.hallId = hallId;
         return this;
     }
 }

@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CalendarService {
@@ -37,7 +38,7 @@ public class CalendarService {
         this.eventMapper = eventMapper;
     }
 
-    public List<List<Day>> getWeeksForMonth(YearMonth yearMonthInput) {
+    public List<List<Day>> getWeeksForMonth(YearMonth yearMonthInput, UUID eventHallUuid) {
         // instead of having a Week class just for that
         List<List<Day>> weeks = new ArrayList<>();
         List<Day> week = new ArrayList<>();
@@ -60,7 +61,6 @@ public class CalendarService {
             LocalDate previousMonth = firstDayOfMonth.minusDays(difference);
             YearMonth ym = YearMonth.from(previousMonth);
             int previousMonthLength = ym.lengthOfMonth();
-
             int previousMonthRemainingDays = 7 - difference;
             // Generate Days of the previous month
             for (int i = 1; i <= previousMonthRemainingDays ; i++) {
@@ -68,25 +68,21 @@ public class CalendarService {
                 week.add(new Day(dayOfPreviousMonth, true));
             }
 
-
             // Generate Days of the input month
             for (int i = 1; i <= difference ; i++) {
-
                 // Disable days if they are in the past
                 boolean disabled = false;
                 if (((i <= LocalDate.now().getDayOfMonth() && yearMonthInput.getMonthValue() <= LocalDate.now().getMonthValue())  ||
                         yearMonthInput.getMonthValue() < LocalDate.now().getMonthValue()) && yearMonthInput.getYear() <= LocalDate.now().getYear()) {
                     disabled = true;
                 }
-//                boolean disabled = i <= LocalDate.now().getDayOfMonth();
-//                if (yearMonthInput.getMonthValue() < LocalDate.now().getMonthValue()) {
-//                    disabled = true;
-//                }
-                week.add(createDay(eventsForSelectedMonth, i, disabled));
+                // Create a day and add it to the week
+                week.add(createDay(eventsForSelectedMonth, i, disabled, eventHallUuid));
             }
             weeks.add(week);
             week = new ArrayList<>();
         }
+
         // Now we start from the first sunday of the input month (second row if the month doesn't start with a sunday)
         LocalDate current = firstDayOfMonth.with(java.time.DayOfWeek.SUNDAY);
 
@@ -102,15 +98,14 @@ public class CalendarService {
                 disabled = true;
             }
 
-            // add the day to the week
-            week.add(createDay(eventsForSelectedMonth, current.getDayOfMonth(), disabled));
+            // Create a day and add it to the week
+            week.add(createDay(eventsForSelectedMonth, current.getDayOfMonth(), disabled, eventHallUuid));
 
             // start a new week on saturday
             if (current.getDayOfWeek() == java.time.DayOfWeek.SATURDAY) {
                 weeks.add(week);
                 week = new ArrayList<>();
             }
-
             current = current.plusDays(1);
         }
 
@@ -118,7 +113,6 @@ public class CalendarService {
         if (!week.isEmpty()) {
             weeks.add(week);
         }
-
         return weeks;
     }
 
@@ -136,12 +130,20 @@ public class CalendarService {
         return entities != null ? entities.stream().map(eventMapper::toEventCalendarDTO).toList() : null;
     }
 
-    private Day createDay(List<EventCalendarDTO> events, int currentDay, boolean disabled) {
+    // Creates a day and checks if any of the existing events for the selected month match the DATE and HALL of the provided
+    //  day of the month (int currentDay) - if there is an event on this date in the same hall - this day is disabled and
+    //  the name of the event is displayed in this cell. Probably a better way to do this, but it works for now.
+    private Day createDay(List<EventCalendarDTO> events, int currentDay, boolean disabled, UUID eventHallUuid) {
         Day d = new Day(currentDay, disabled);
         if (events != null && !events.isEmpty()) {
-            List<EventCalendarDTO> eventL = events.stream().filter(e -> e.getDayOfMonth() == currentDay).toList();
+            List<EventCalendarDTO> eventL = events.stream()
+                    .filter(e -> e.getDayOfMonth() == currentDay)
+                    .toList();
             if (!eventL.isEmpty()) {
-                d.setDisabled(true).setTextContent(eventL.getFirst().getName());
+                EventCalendarDTO eventCalendarDTO = eventL.getFirst();
+                if (eventCalendarDTO.getHallId().equals(eventHallUuid)) {
+                    d.setDisabled(true).setTextContent(eventL.getFirst().getName());
+                }
             }
         }
         return d;

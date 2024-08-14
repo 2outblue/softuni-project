@@ -136,27 +136,27 @@
             <input type="hidden" name="hallUuid" th:field="*{hallUuid}">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" th:name="firstName" th:field="*{firstName}"
+                <input required type="text" id="firstName" th:name="firstName" th:field="*{firstName}"
                     placeholder="Your first name">
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" th:name="lastName" th:field="*{lastName}"
+                <input required type="text" id="lastName" th:name="lastName" th:field="*{lastName}"
                     placeholder="Your last name">
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" th:name="email" th:field="*{email}"
+                <input required type="email" id="email" th:name="email" th:field="*{email}"
                     placeholder="Your email address">
-                <p>We will send you an the invoice and details of your ticket on your email address!</p>
+                <p>We will send you the invoice and details of your ticket on your email address!</p>
             </div>
 
             <div class="form-group">
                 <label for="paymentInfo">Payment Details</label>
-                <input type="text" id="paymentInfo" th:name="paymentInfo" 
+                <input required type="text" id="paymentInfo" th:name="paymentInfo"
                     placeholder="Enter your payment information">
-                <input class="bt-last-input" type="text" id="cardCode" th:name="cardCode"
+                <input required class="bt-last-input" type="text" id="cardCode" th:name="cardCode"
                     placeholder="Card code">
             </div>
 

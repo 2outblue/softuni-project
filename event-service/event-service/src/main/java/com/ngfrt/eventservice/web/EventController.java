@@ -79,7 +79,7 @@ public class EventController {
 
         return ResponseEntity.created(
                 uriBuilder.path("/api/event/{newEventUuid}").build(newEventUuid)
-        ).build();
+        ).body(eventService.getEventByUuid(newEventUuid).orElse(null));
     }
 
     @PatchMapping("/{uuid}")

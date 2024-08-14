@@ -2,9 +2,12 @@ package com.ngfrt.appmain.model.entity;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
 import org.hibernate.annotations.JdbcTypeCode;
 
 import java.sql.Types;
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "users")
@@ -18,6 +21,9 @@ public class User extends BaseEntity{
     private String password;
     private String phone;
     private boolean active;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<UserRoleEntity> roles;
 
     public UUID getUuid() {
         return uuid;
@@ -79,6 +85,15 @@ public class User extends BaseEntity{
 
     public User setActive(boolean active) {
         this.active = active;
+        return this;
+    }
+
+    public List<UserRoleEntity> getRoles() {
+        return roles;
+    }
+
+    public User setRoles(List<UserRoleEntity> roles) {
+        this.roles = roles;
         return this;
     }
 }

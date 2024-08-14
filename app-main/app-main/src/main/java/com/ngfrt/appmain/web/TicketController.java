@@ -22,7 +22,7 @@ public class TicketController {
     public ModelAndView buyTicket(TicketDTO ticketDTO,
                                   Model model) {
 
-        ticketService.saveTicket(ticketDTO);
+        ticketService.saveTicketAndSendEmail(ticketDTO);
         model.addAttribute("message", "Ticket successfully purchased. Please check your email for details!");
 
         return new ModelAndView("task-info");

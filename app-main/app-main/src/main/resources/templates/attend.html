@@ -65,25 +65,7 @@
 
     </div>
 
-    <nav class="nav-bar">
-        <div class="shadow-overlay">
-            <ul class="header-nav">
-                <li class="btn-holder"><button class="cc-logo"><img src="\static\images\cc-logo.png" alt="img"></li>
-                <li class="btn-holder halls"><button class="nav-button">Halls</button></li>
-                <li class="btn-holder"><button class="nav-button">Featured Events</button></li>
-                <li class="btn-holder"><button class="nav-button">Plan Your Event</button></li>
-                <li class="btn-holder login"><button class="nav-button">Login</button></li>
-                <li class="btn-holder register"><button class="nav-button">Register</button></li>
-
-                <li class="btn-holder">
-                    <div class="lang-div">
-                        <button class="language-select">
-                            <img src="\static\images\lang-uk.png" alt="img">
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div th:replace="~{fragments/navbar}"></div>
 
 
 
@@ -138,34 +120,7 @@
 
 
 
-    <footer class="site-footer">
-        <div class="footer-holder">
-            <figure class="footer-logo"><img src="\static\images\cc-logo.png" alt="img"></figure>
-            <p class="footer-text-upper">
-                The Cartland Convention Center is owned and proudly managed by Highland Holdings. We leverage the skills and talant of our
-                partners to ensure an exciting and sustainable future.
-            </p>
-            <p class="footer-text-end">
-                © Copyright 2024 the Cartland Center.
-            </p>
-        </div>
-        <div class="footer-logo">
-            <img src="\static\images\green-logo.png" alt="greenlogo">
-        </div>
-        <div class="footer-right">
-            <ul>
-                <li>
-                    <p>Contact Us</p>
-                </li>
-                <li>
-                    <p>Sustainability</p>
-                </li>
-                <li>
-                    <p>FAQs</p>
-                </li>
-            </ul>
-        </div>
-    </footer>
+    <div th:replace="~{fragments/footer}"></div>
 
 </body>
 </html>

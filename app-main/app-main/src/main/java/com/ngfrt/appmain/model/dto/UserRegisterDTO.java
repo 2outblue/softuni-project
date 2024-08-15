@@ -1,6 +1,8 @@
 package com.ngfrt.appmain.model.dto;
 
 public class UserRegisterDTO {
+
+
     private String firstName;
     private String lastName;
     private String email;

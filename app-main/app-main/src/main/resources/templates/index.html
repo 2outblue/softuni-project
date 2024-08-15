@@ -24,54 +24,7 @@
         </div>
     </div>
 
-    <nav class="nav-bar">
-        <div class="shadow-overlay">
-            <ul class="header-nav">
-                <li class="btn-holder"><button class="cc-logo" th:onclick="'window.location.href=\'/' + '\';'"><img
-                            src="/images/cc-logo.png" alt="img"></li>
-                <li class="btn-holder halls">
-                    <button class="nav-button" th:onclick="'window.location.href=\'/halls' + '\';'">Halls</button>
-                </li>
-                <li class="btn-holder"><button class="nav-button"
-                        th:onclick="'window.location.href=\'/events/featured' + '\';'">Featured Events</button></li>
-                <li class="btn-holder">
-                    <button class="nav-button" th:onclick="'window.location.href=\'/event/plan' + '\';'">Plan Your
-                        Event</button>
-                </li>
-                <li class="btn-holder">
-                    <button class="nav-button"
-                        th:onclick="'window.location.href=\'/event/attend' + '\';'">Attend</button>
-                </li>
-                <li class="btn-holder btn-right" sec:authorize="isAuthenticated()">
-                    <button class="nav-button btn-acc" th:onclick="'window.location.href=\'/account/panel' + '\';'">
-                    <div>My Account</div>
-                    <div class="nav-email" sec:authentication="name">email</div>
-                    </button>
-                </li>
-                <li class="btn-holder" sec:authorize="isAuthenticated()">
-                    <form th:action="@{/user/logout}" th:method="POST">
-                        <button class="nav-button btn-logout">Logout</button>
-                    </form>
-                </li>
-                <li class="btn-holder btn-right" sec:authorize="!isAuthenticated()">
-                    <button class="nav-button" th:onclick="'window.location.href=\'/user/login' + '\';'">Login</button>
-                </li>
-                <li class="btn-holder register" sec:authorize="!isAuthenticated()">
-                    <button class="nav-button"
-                        th:onclick="'window.location.href=\'/user/register' + '\';'">Register</button>
-                </li>
-
-                <li class="btn-holder">
-                    <div class="lang-div">
-                        <button class="language-select">
-                            <img src="/images/lang-uk.png" alt="img">
-                        </button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+    <div th:replace="~{fragments/navbar}"></div>
 
     <div class="index-intro">
         <div class="slogan">
@@ -93,7 +46,7 @@
                 <!-- <div class="index-box-header">Overview</div> -->
 
                 <div class="box-text-holder">
-                    <img src="\static\images\logo2.png" alt="logoimg">
+                    <img src="/images/logo2.png" alt="logoimg">
                     <p class="index-box-text1">
                         The newest and most modern Convention center Cartland spans 2200 square meters and
                         offers a well planned and equipped complex of 5 halls with a combined seating capacity of
@@ -191,35 +144,7 @@
         </button>
     </div>
 
-    <footer class="site-footer">
-        <div class="footer-holder">
-            <figure class="footer-logo"><img src="/images/cc-logo.png" alt="img"></figure>
-            <p class="footer-text-upper">
-                The Cartland Convention Center is owned and proudly managed by Highland Holdings. We leverage the skills
-                and talant of our
-                partners to ensure an exciting and sustainable future.
-            </p>
-            <p class="footer-text-end">
-                © Copyright 2024 the Cartland Center.
-            </p>
-        </div>
-        <div class="footer-logo">
-            <img src="/images/green-logo.png" alt="greenlogo">
-        </div>
-        <div class="footer-right">
-            <ul>
-                <li>
-                    <p>Contact Us</p>
-                </li>
-                <li>
-                    <p>Sustainability</p>
-                </li>
-                <li>
-                    <p>FAQs</p>
-                </li>
-            </ul>
-        </div>
-    </footer>
+<div th:replace="~{fragments/footer}"></div>
 
 </body>
 

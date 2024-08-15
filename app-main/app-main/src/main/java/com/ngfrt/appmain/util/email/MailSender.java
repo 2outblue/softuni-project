@@ -1,5 +1,6 @@
 package com.ngfrt.appmain.util.email;
 
+import com.ngfrt.appmain.config.EmailConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,10 @@ public class MailSender {
     }
 
     public boolean sendMail(String address, String subject, String message) {
+        if (!EmailConstant.ENABLE_EMAIL_SERVICE) {
+            return true;
+        }
+
         String url = String.format("%s/%s/%s/%s",emailServiceUrl, address, subject, message);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, null, String.class);
 

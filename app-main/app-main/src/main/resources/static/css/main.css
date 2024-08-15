@@ -234,7 +234,7 @@ body {
 
 .index-box-p {
   position: relative;
-  background-image: url('/static/images/plan1.jpg');
+  background-image: url('/images/plan1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -275,7 +275,7 @@ body {
 
 .index-box-att {
   position: relative;
-  background-image: url('/static/images/attend1.jpg');
+  background-image: url('/images/attend1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -399,7 +399,7 @@ margin-bottom: 5rem;
 }
 
 .index-box-image-hot {
-    background-image: url('/static/images/hotel-out-1.jpg');
+    background-image: url('/images/hotel-out-1.jpg');
     background-size: cover;
     background-position: center;
 
@@ -1021,7 +1021,7 @@ background: linear-gradient(90deg, rgba(153,2,8,1) 0%, rgba(121,9,68,1) 53%, rgb
 /*  ----------------------------------  EVENT PLAN  -------------------------------------- */
 
 .ep-header {
-  background-image: url('/static/images/background-lobby1.webp');
+  background-image: url('/images/background-lobby1.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -1526,7 +1526,7 @@ background: linear-gradient(90deg, rgb(2, 153, 10) 0%, rgb(46, 175, 175) 53%, rg
   height: 100%;
   min-height: 100vh;
 
-  background-image: url('../images/background1.jpg');
+  background-image: url('/images/background1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

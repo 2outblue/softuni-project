@@ -1,0 +1,52 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav class="nav-bar">
+    <div class="shadow-overlay">
+        <ul class="header-nav">
+            <li class="btn-holder"><button class="cc-logo" th:onclick="'window.location.href=\'/' + '\';'"><img
+                    src="/images/cc-logo.png" alt="img"></li>
+            <li class="btn-holder halls">
+                <button class="nav-button" th:onclick="'window.location.href=\'/halls' + '\';'">Halls</button>
+            </li>
+            <li class="btn-holder"><button class="nav-button"
+                                           th:onclick="'window.location.href=\'/events/featured' + '\';'">Featured Events</button></li>
+            <li class="btn-holder">
+                <button class="nav-button" th:onclick="'window.location.href=\'/event/plan' + '\';'">Plan Your
+                    Event</button>
+            </li>
+            <li class="btn-holder">
+                <button class="nav-button"
+                        th:onclick="'window.location.href=\'/event/attend' + '\';'">Attend</button>
+            </li>
+            <li class="btn-holder btn-right" sec:authorize="isAuthenticated()">
+                <button class="nav-button btn-acc" th:onclick="'window.location.href=\'/account/panel' + '\';'">
+                    <div>My Account</div>
+                    <div class="nav-email" sec:authentication="name">email</div>
+                </button>
+            </li>
+            <li class="btn-holder" sec:authorize="isAuthenticated()">
+                <form th:action="@{/user/logout}" th:method="POST">
+                    <button class="nav-button btn-logout">Logout</button>
+                </form>
+            </li>
+            <li class="btn-holder btn-right" sec:authorize="!isAuthenticated()">
+                <button class="nav-button" th:onclick="'window.location.href=\'/user/login' + '\';'">Login</button>
+            </li>
+            <li class="btn-holder register" sec:authorize="!isAuthenticated()">
+                <button class="nav-button"
+                        th:onclick="'window.location.href=\'/user/register' + '\';'">Register</button>
+            </li>
+
+            <li class="btn-holder">
+                <div class="lang-div">
+                    <button class="language-select">
+                        <img src="/images/lang-uk.png" alt="img">
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

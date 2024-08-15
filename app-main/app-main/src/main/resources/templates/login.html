@@ -18,17 +18,7 @@
 
   <div class="background-overlay"></div>
     <header>
-        <nav class="nav-bar">
-            <div class="shadow-overlay">
-                <ul class="header-nav">
-                    <li class="btn-holder"><button class="cc-logo"><img src="\static\images\cc-logo.png" alt="img"></li>
-                    <li class="btn-holder"><button class="nav-button">Halls</button></li>
-                    <li class="btn-holder"><button class="nav-button">Featured Events</button></li>
-                    <li class="btn-holder"><button class="nav-button">Accomodation</button></li>
-                    <li class="btn-holder"><button class="language-select"><img src="\static\images\lang-uk.png" alt="img"></li>
-                </ul>
-            </div>
-        </nav>
+        <div th:replace="~{fragments/navbar}"></div>
     </header>
 
 

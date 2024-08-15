@@ -39,10 +39,14 @@
             </li>
 
             <li class="btn-holder">
-                <div class="lang-div">
-                    <button class="language-select">
-                        <img src="/images/lang-uk.png" alt="img">
-                    </button>
+                <div class="lang-div" style="max-width: 40px; text-wrap: wrap; margin-right: 1.2rem;"
+                     sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <span th:if="${executeTime != null}">
+                        Page generated in <span th:text="${executeTime}">0</span> ms
+                    </span>
+<!--                    <button class="language-select">-->
+<!--                        <img src="/images/lang-uk.png" alt="img">-->
+<!--                    </button>-->
                 </div>
             </li>
         </ul>

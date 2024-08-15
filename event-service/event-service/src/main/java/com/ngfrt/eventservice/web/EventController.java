@@ -59,6 +59,12 @@ public class EventController {
         return ResponseEntity.ok(eventService.getByYearAndMonth(year, month));
     }
 
+    @GetMapping("/monthday/{month}/{day}")
+    public ResponseEntity<List<EventDTO>> getEventsByMonthAndDay(@PathVariable int month,
+                                                                  @PathVariable int day) {
+        return ResponseEntity.ok(eventService.getByMonthAndDay(month, day));
+    }
+
     @GetMapping("/{uuid}/buyTicket")
     public ResponseEntity<EventDTO> buyTicketForEvent(@PathVariable UUID uuid) {
         EventDTO eventDTO = eventService.buyTicket(uuid);

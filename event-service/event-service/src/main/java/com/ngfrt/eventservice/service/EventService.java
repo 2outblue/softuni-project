@@ -93,6 +93,11 @@ public class EventService {
         return mapToDTOs(eventEntities);
     }
 
+    public List<EventDTO> getByMonthAndDay(int month, int day) {
+        List<Event> eventEntities = eventRepository.findAllByMonthAndDay(month, day);
+        return mapToDTOs(eventEntities);
+    }
+
     public EventDTO buyTicket(UUID uuid) {
         Optional<Event> eventOpt = eventRepository.findByUuid(uuid);
         if (eventOpt.isPresent()) {

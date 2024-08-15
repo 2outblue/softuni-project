@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,29 +36,19 @@
     </nav>
 
     <div class="booking-list">
-        <div>My Bookings</div>
-        <div class="booking-container">
+        <div th:text="${bookingsSize == 0 ? 'No Bookings Yet' : 'My Bookings'}">My Bookings</div>
+        <div class="booking-container"
+        th:each="event: ${bookings}">
             <div class="booking-content">
-                <div>Event Date: </div>
-                <div>Booking code: </div>
-                <div>Description: </div>
-                <div>Event Name: </div>
-                <div>Organizer: </div>
-                <div>Organizer Phone: </div>
-                <div>Tickets: </div>
-                <div>Hall Name: </div>
-            </div>
-        </div>
-        <div class="booking-container">
-            <div class="booking-content">
-                <div>Event Date</div>
-                <div>Booking code</div>
-                <div>Description</div>
-                <div>Event Name</div>
-                <div>Organizer</div>
-                <div>Organizer Phone</div>
-                <div>Tickets</div>
-                <div>Hall Name</div>
+                <div th:text="${'Event Date: ' + event.getDateString()}">Event Date: </div>
+                <div th:text="${'Booking code: ' + event.getUuid()}">Booking code: </div>
+                <div th:text="${'Event Name: ' + event.getName()}">Event Name: </div>
+                <div th:text="${'Description: ' + event.getDescription()}">Description: </div>
+                <div th:text="${'Organizer: ' + event.getOrganizer()}">Organizer: </div>
+                <div th:text="${'Organizer Phone: ' + event.getPhoneNumber()}">Organizer Phone: </div>
+                <div th:text="${'Tickets: ' + event.getTickets()}">Tickets: </div>
+                <div th:text="${'Hall Name: ' + event.getHallName()}">Hall Name: </div>
+                <button class="mb-btn">Edit</button>
             </div>
         </div>
     </div>

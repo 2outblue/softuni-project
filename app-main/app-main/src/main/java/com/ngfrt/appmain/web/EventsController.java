@@ -27,4 +27,5 @@ public class EventsController {
         model.addAttribute("events", featuredEvents);
         return new ModelAndView("featured-events");
     }
+
 }

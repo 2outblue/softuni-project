@@ -2,6 +2,7 @@ package com.ngfrt.appmain.model.mapper;
 
 import com.ngfrt.appmain.model.dto.EventCalendarDTO;
 import com.ngfrt.appmain.model.dto.EventDTO;
+import com.ngfrt.appmain.model.dto.EventEditDTO;
 import com.ngfrt.appmain.model.dto.EventInfoDTO;
 import com.ngfrt.appmain.service.HallService;
 import jdk.jfr.Name;
@@ -22,6 +23,9 @@ public interface EventMapper {
 
     @Mapping(source = "date", target = "dayOfMonth", qualifiedByName = "mapDateToDayOfMonth")
     EventCalendarDTO toEventCalendarDTO(EventDTO event);
+
+    @Mapping(source = "hallId", target = "hallName", qualifiedByName = "mapHallIdToHallName")
+    EventEditDTO toEventEditDTO(EventDTO eventDTO, @Context HallService hallService);
 
     @Named("mapHallIdToHallName")
     static String mapHallIdToHallName(UUID uuid, @Context HallService hallService) {

@@ -3,10 +3,8 @@ package com.ngfrt.appmain.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.ngfrt.appmain.model.dto.DateDTO;
-import com.ngfrt.appmain.model.dto.EventDTO;
-import com.ngfrt.appmain.model.dto.EventInfoDTO;
-import com.ngfrt.appmain.model.dto.TicketDTO;
+import com.ngfrt.appmain.model.dto.*;
+import com.ngfrt.appmain.model.entity.User;
 import com.ngfrt.appmain.model.mapper.EventMapper;
 import com.ngfrt.appmain.service.exception.EventNotFoundException;
 import com.ngfrt.appmain.service.exception.EventServiceException;
@@ -22,6 +20,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -83,6 +82,19 @@ public class EventService {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();
         return gson.fromJson(response, new TypeToken<List<EventInfoDTO>>(){}.getType());
+    }
+
+    public List<EventEditDTO> getAllUserEvents(UUID uuid) {
+        String url = eventServiceUrl + "/user/" + uuid;
+        String response = restTemplate.getForObject(url, String.class);
+
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
+        List<EventDTO> eventDTOs = gson.fromJson(response, new TypeToken<List<EventDTO>>(){}.getType());
+        if (eventDTOs != null && !eventDTOs.isEmpty()) {
+            return eventDTOs.stream().map(e -> eventMapper.toEventEditDTO(e, hallService)).toList();
+        }
+        return new ArrayList<EventEditDTO>();
     }
 
 

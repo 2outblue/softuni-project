@@ -5,14 +5,13 @@ import com.ngfrt.appmain.model.dto.EventDTO;
 import com.ngfrt.appmain.model.dto.HallListingDTO;
 import com.ngfrt.appmain.service.EventService;
 import com.ngfrt.appmain.service.HallService;
+import com.ngfrt.appmain.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -23,10 +22,12 @@ public class EventCreateController {
 
     private final HallService hallService;
     private final EventService eventService;
+    private final UserService userService;
 
-    public EventCreateController(HallService hallService, EventService eventService) {
+    public EventCreateController(HallService hallService, EventService eventService, UserService userService) {
         this.hallService = hallService;
         this.eventService = eventService;
+        this.userService = userService;
     }
 
 
@@ -53,6 +54,7 @@ public class EventCreateController {
                                         DateDTO dateDTO,
                                         Model model) {
 
+
         EventDTO event = eventService.mapDate(eventDTO, dateDTO);
 
         model.addAttribute("hallName", hallName);
@@ -61,9 +63,11 @@ public class EventCreateController {
     }
 
     @PostMapping("/create")
-    public ModelAndView createNewEvent(EventDTO eventDTO) {
-        String newEventUri = eventService.createNewEvent(eventDTO);
+    public ModelAndView createNewEvent(EventDTO eventDTO,
+                                       @AuthenticationPrincipal User principal) {
 
+        eventDTO.setUserId(userService.getUserUuidByEmail(principal.getUsername()));
+        String newEventUri = eventService.createNewEvent(eventDTO);
 
         return new ModelAndView("event-created");
     }

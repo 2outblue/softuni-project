@@ -134,8 +134,8 @@
     <div class="container">
         <div class="form-area">
             <h2>Book an Event</h2>
-            <form th:action="@{/calendar/book}" th:method="GET"
-            th:object="${eventDTO}">
+            <form th:action="@{/calendar/book}" th:method="POST"
+            th:object="${event}">
                 <div class="form-group">
                     <label for="hallId">Select Hall:</label>
                     <select id="hallId" name="hallId" th:field="*{hallId}" required>
@@ -148,24 +148,36 @@
                     <label for="eventName">Event Name:</label>
                     <input type="text" id="eventName" th:name="name" th:field="*{name}"
                         placeholder="Enter the event name">
+                    <small class="bg-danger text-light rounded" style="font-size: 1.2rem;"
+                           th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}">Error</small>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Event Description:</label>
                     <textarea id="description" th:name="description" th:field="*{description}"
                         placeholder="Enter the event description"></textarea>
+                    <small class="bg-danger text-light rounded" style="font-size: 1.2rem;"
+                           th:if="${#fields.hasErrors('description')}"
+                           th:errors="*{description}">Error</small>
                 </div>
 
                 <div class="form-group">
                     <label for="organizer">Organizer Name:</label>
                     <input type="text" id="organizer" th:name="organizer" th:field="*{organizer}"
                         placeholder="Name of the company or organization or person, etc.">
+                    <small class="bg-danger text-light rounded" style="font-size: 1.2rem;"
+                           th:if="${#fields.hasErrors('organizer')}"
+                           th:errors="*{organizer}">Error</small>
                 </div>
 
                 <div class="form-group">
                     <label for="phoneNumber">Phone Number:</label>
                     <input type="text" id="phoneNumber" th:name="phoneNumber" th:field="*{phoneNumber}"
                         placeholder="Enter a contact number">
+                    <small class="bg-danger text-light rounded" style="font-size: 1.2rem;"
+                           th:if="${#fields.hasErrors('phoneNumber')}"
+                           th:errors="*{phoneNumber}">Error</small>
                 </div>
 
                 <div class="form-group be-btn">

@@ -41,8 +41,13 @@ public class EventCreateController {
     public ModelAndView eventForm(Model model) {
         List<HallListingDTO> halls = hallService.getAllHallsForListing();
         model.addAttribute("halls", halls);
-        model.addAttribute("eventDTO", new EventDTO());
 
+        // For the redirection of the validation in the CalendarController
+        if (model.containsAttribute("event")) {
+            return new ModelAndView("book-event");
+        }
+
+        model.addAttribute("event", new EventDTO());
         ModelAndView mav = new ModelAndView();
         mav.setViewName("book-event");
         return mav;
@@ -53,8 +58,6 @@ public class EventCreateController {
                                         EventDTO eventDTO,
                                         DateDTO dateDTO,
                                         Model model) {
-
-
         EventDTO event = eventService.mapDate(eventDTO, dateDTO);
 
         model.addAttribute("hallName", hallName);

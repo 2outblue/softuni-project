@@ -61,8 +61,8 @@
                   class="input-field"
                 />
                 <small class="bg-danger text-light rounded"
-                       th:if="${#fields.hasErrors('firstName')}"
-                       th:errors="*{firstName}">Error Message</small>
+                       th:if="${#fields.hasErrors('lastName')}"
+                       th:errors="*{lastName}">Error Message</small>
               </div>
             </div>
       
@@ -77,8 +77,8 @@
                   class="input-field"
                 />
                 <small class="bg-danger text-light rounded"
-                       th:if="${#fields.hasErrors('firstName')}"
-                       th:errors="*{firstName}">Error Message</small>
+                       th:if="${#fields.hasErrors('email')}"
+                       th:errors="*{email}">Error Message</small>
               </div>
               <div>
                 <label for="phone" class="input-label"> Phone number </label>
@@ -90,8 +90,8 @@
                   class="input-field"
                 />
                 <small class="bg-danger text-light rounded"
-                       th:if="${#fields.hasErrors('firstName')}"
-                       th:errors="*{firstName}">Error Message</small>
+                       th:if="${#fields.hasErrors('phone')}"
+                       th:errors="*{phone}">Error Message</small>
               </div>
             </div>
       
@@ -107,8 +107,8 @@
                 class="input-field"
               />
               <small class="bg-danger text-light rounded"
-                     th:if="${#fields.hasErrors('firstName')}"
-                     th:errors="*{firstName}">Error Message</small>
+                     th:if="${#fields.hasErrors('password')}"
+                     th:errors="*{password}">Error Message</small>
             </div>
       
             <div class="input-wide">
@@ -123,8 +123,8 @@
                 class="input-field"
               />
               <small class="bg-danger text-light rounded"
-                     th:if="${#fields.hasErrors('firstName')}"
-                     th:errors="*{firstName}">Error Message</small>
+                     th:if="${#fields.hasErrors('confirmPassword')}"
+                     th:errors="*{confirmPassword}">Error Message</small>
             </div>
 
             <button class="submit-btn">Register Now</button>

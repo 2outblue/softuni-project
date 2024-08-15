@@ -1,5 +1,8 @@
 package com.ngfrt.appmain.model.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -9,10 +12,22 @@ public class EventEditDTO {
     private LocalDate date;
     private UUID uuid;
 
+    @NotBlank(message = "Please enter a name")
+    @Size(min = 5, max = 30, message = "Event name must be between 5 and 30 characters")
     private String name;
+
+    @NotBlank(message = "Please enter a description")
+    @Size(min = 8, max = 150, message = "Description must be between 8 and 150 characters")
     private String description;
+
+    @NotBlank(message = "Please specify event organizer")
+    @Size(min = 2, max = 35, message = "Organizer must be between 2 and 35 characters")
     private String organizer;
+
+    @NotBlank(message = "Phone is required")
+    @Size(min = 5, max = 20, message = "Contact phone must be between 5 and 20 characters")
     private String phoneNumber;
+
     private int tickets;
     private String hallName;
 

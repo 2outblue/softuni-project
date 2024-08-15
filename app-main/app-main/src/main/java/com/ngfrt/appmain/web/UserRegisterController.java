@@ -24,6 +24,7 @@ public class UserRegisterController {
 
     @GetMapping("/register")
     public ModelAndView registerForm(Model model) {
+
         if (!model.containsAttribute("userRegisterDTO")) {
             model.addAttribute("userRegisterDTO", new UserRegisterDTO());
         }

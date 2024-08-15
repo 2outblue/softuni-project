@@ -28,9 +28,11 @@
           <form th:action="@{/user/login}" th:method="POST">
             <div class="form-title">
               <h2 class="">Login</h2>
+              <div style="text-align: center; color: red; font-size: 1.2rem;" th:text="${error}">Login error</div>
             </div>
     
             <div class="input-wide">
+                
                 <label for="email" class="input-label">
                   Email
                 </label>

@@ -66,6 +66,9 @@
                             id="name"
                             class="input-field"
                     />
+                    <small style="color: red;" class="bg-danger text-light rounded"
+                           th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}">Error</small>
                 </div>
                 <div class="u-input">
                     <label for="description" class="input-label">
@@ -77,6 +80,9 @@
                              th:field="*{description}"
                             id="description"
                       ></textarea>
+                    <small style="color: red;" class="bg-danger text-light rounded"
+                           th:if="${#fields.hasErrors('description')}"
+                           th:errors="*{description}">Error</small>
                 </div>
                 <div class="u-input">
                     <label for="organizer" class="input-label">
@@ -89,6 +95,9 @@
                             id="organizer"
                             class="input-field"
                     />
+                    <small style="color: red;" class="bg-danger text-light rounded"
+                           th:if="${#fields.hasErrors('organizer')}"
+                           th:errors="*{organizer}">Error</small>
                 </div>
                 <div class="u-input">
                     <label for="phoneNumber" class="input-label">
@@ -101,6 +110,9 @@
                             id="phoneNumber"
                             class="input-field"
                     />
+                    <small style="color: red;" class="bg-danger text-light rounded"
+                           th:if="${#fields.hasErrors('phoneNumber')}"
+                           th:errors="*{phoneNumber}">Error</small>
                 </div>
                 <div class="u-input">
                     <label class="input-label">

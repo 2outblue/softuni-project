@@ -1,6 +1,5 @@
 package com.ngfrt.appmain.web;
 
-import com.ngfrt.appmain.model.dto.DateDTO;
 import com.ngfrt.appmain.model.dto.EventDTO;
 import com.ngfrt.appmain.service.CalendarService;
 import com.ngfrt.appmain.service.HallService;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 
 import java.time.Year;
@@ -29,7 +27,6 @@ public class CalendarController {
         this.hallService = hallService;
     }
 
-    //TODO - add previous and next month buttons and functionality if there is time
     @GetMapping("/calendar/book")
     public String getMonthCalendar(@RequestParam(required = false) Integer year,
                                    @RequestParam(required = false) Integer monthValue,
@@ -67,22 +64,4 @@ public class CalendarController {
         model.addAttribute("event", eventDTO);
         return "calendar";
     }
-
-//    @GetMapping("/calendar/finalize")
-//    public ModelAndView finalizeBooking(@RequestParam String hallName,
-//                                        EventDTO eventDTO,
-//                                        DateDTO dateDTO,
-//                                        Model model) {
-//
-//
-//        model.addAttribute("hallName", hallName);
-//        model.addAttribute("event", eventDTO);
-//        model.addAttribute("date", dateDTO);
-//        return new ModelAndView("booking-finalize");
-//    }
-
-
-
-
-
 }

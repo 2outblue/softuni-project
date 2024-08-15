@@ -1,9 +1,12 @@
 package com.ngfrt.appmain.model.dto;
 
+import com.ngfrt.appmain.model.validations.FieldMatch;
+import com.ngfrt.appmain.model.validations.UniqueUserEmail;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@FieldMatch(firstField = "password", secondField = "confirmPassword", message = "Passwords must match")
 public class UserRegisterDTO {
 
     @NotBlank(message = "Please provide a First Name")
@@ -14,6 +17,7 @@ public class UserRegisterDTO {
     @Size(min = 2, max = 25, message = "Last name must be between 2 and 25 characters")
     private String lastName;
 
+    @UniqueUserEmail(message = "This email already exists!")
     @NotBlank(message = "Please provide an email")
     @Email(message = "Must be a valid email address format")
     private String email;

@@ -4,11 +4,14 @@ import com.ngfrt.appmain.model.dto.*;
 import com.ngfrt.appmain.service.EventService;
 import com.ngfrt.appmain.service.HallService;
 import com.ngfrt.appmain.service.exception.EventNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -70,20 +73,34 @@ public class EventController {
     }
 
     @GetMapping("/edit")
-    public ModelAndView editEvent(@RequestParam("uuid") String uuid,
+    public ModelAndView editEvent(@RequestParam(value = "uuid", required = false) String uuid,
                                   Model model) {
+
+        if (model.containsAttribute("eventDTO")) {
+            return new ModelAndView("edit-booking");
+        }
         EventEditDTO eventDTO = eventService.getEventEditDtoByUuidString(uuid);
         model.addAttribute("eventDTO", eventDTO);
         return new ModelAndView("edit-booking");
     }
 
     @PostMapping("/edit")
-    public ModelAndView editEvent(@ModelAttribute("eventDTO") EventEditDTO eventEditDTO,
+    public ModelAndView editEvent(@ModelAttribute("eventDTO") @Valid EventEditDTO eventDTO,
+                                  BindingResult bindingResult,
+                                  RedirectAttributes rAtt,
                                   Model model) {
-        eventService.updateEvent(eventEditDTO);
-        EventEditDTO eventDTO = eventService.getEventEditDtoByUuidString(eventEditDTO.getUuid().toString());
 
-        model.addAttribute("eventDTO", eventDTO);
+        if (bindingResult.hasErrors()) {
+            EventEditDTO oldDto = eventService.getEventEditDtoByUuidString(eventDTO.getUuid().toString());
+            rAtt.addFlashAttribute("eventDTO", oldDto);
+            rAtt.addFlashAttribute("org.springframework.validation.BindingResult.eventDTO", bindingResult);
+            return new ModelAndView("redirect:/event/edit");
+        }
+
+        eventService.updateEvent(eventDTO);
+        EventEditDTO updatedEventDTO = eventService.getEventEditDtoByUuidString(eventDTO.getUuid().toString());
+
+        model.addAttribute("eventDTO", updatedEventDTO);
         return new ModelAndView("edit-booking");
     }
 }

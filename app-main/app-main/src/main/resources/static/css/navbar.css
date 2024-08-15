@@ -32,7 +32,7 @@ body {
 
 .shadow-overlay {
     background-size: 100% 95px;
-    background-image: url('/static/images/shadow-nav2.png');
+    background-image: url('/images/shadow-nav2.png');
     padding: 0;
     height: 95px;
 }
@@ -55,6 +55,9 @@ body {
     /* max-width: fit-content; */
     align-content: center;
 
+}
+.btn-holder form {
+    height: 100%;
 }
 
 .nav-button {
@@ -101,8 +104,27 @@ body {
     margin-left: 5rem;
 }
 
-.login {
+.btn-logout {
+    min-height: 100%;
+}
+
+.btn-right {
     margin-left: 7rem;
+}
+
+.btn-acc {
+    max-width: 10rem;
+    padding: 0 0.7rem;
+}
+
+.btn-acc div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.nav-email {
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 .lang-div {

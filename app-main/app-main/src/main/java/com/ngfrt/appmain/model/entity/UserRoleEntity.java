@@ -2,15 +2,14 @@ package com.ngfrt.appmain.model.entity;
 
 
 import com.ngfrt.appmain.model.entity.enums.UserRoleEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_roles")
+@Table(name = "roles")
 public class UserRoleEntity extends BaseEntity {
 
-    @Enumerated
+    @Column(nullable = false, unique = true)
+    @Enumerated(EnumType.STRING)
     private UserRoleEnum role;
 
     public UserRoleEnum getRole() {

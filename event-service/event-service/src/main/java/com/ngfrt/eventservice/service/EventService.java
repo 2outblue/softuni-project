@@ -91,6 +91,17 @@ public class EventService {
         return mapToDTOs(eventEntities);
     }
 
+    public EventDTO buyTicket(UUID uuid) {
+        Optional<Event> eventOpt = eventRepository.findByUuid(uuid);
+        if (eventOpt.isPresent()) {
+            Event entity = eventOpt.get();
+            int tickets = entity.getTickets();
+            entity.setTickets(tickets + 1);
+            eventRepository.save(entity);
+            return eventMapper.toDto(entity);
+        }
+        return null;
+    }
 
     private List<EventDTO> mapToDTOs(List<Event> eventEntities){
         return eventEntities.stream()

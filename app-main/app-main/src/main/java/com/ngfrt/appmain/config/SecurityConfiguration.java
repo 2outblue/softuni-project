@@ -17,22 +17,28 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(
                 authorizeRequests -> authorizeRequests
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/api/**", "/home", "/", "/calendar", "/calendar/**", "/halls/**", "/halls/details", "/halls/details/**", "/event/**").permitAll()
-                        .requestMatchers("/**", "/error").permitAll()
+                        .requestMatchers("/api/**", "/halls/**", "/halls/details", "/halls/details/**").permitAll()
+                        .requestMatchers("/event/attend", "/event/plan", "/events/**").permitAll()
+                        .requestMatchers("/user/login").anonymous()
+                        .requestMatchers("/user/register").anonymous()
+                        .requestMatchers("/", "/error").permitAll()
                         .anyRequest().authenticated()
 
         ).formLogin(formLogin -> {
            formLogin.loginPage("/user/login")
                    .usernameParameter("email")
                    .passwordParameter("password")
-                   .defaultSuccessUrl("/")
+                   .defaultSuccessUrl("/", true)
                    .failureForwardUrl("/user/login-error");
         }).logout(logout -> {
             logout
                     .logoutUrl("/user/logout")
                     .logoutSuccessUrl("/")
                     .invalidateHttpSession(true);
-        });
+        }).exceptionHandling(exceptionHandling ->
+                exceptionHandling
+                        .accessDeniedPage("/")
+        );
 
         return http.build();
     }

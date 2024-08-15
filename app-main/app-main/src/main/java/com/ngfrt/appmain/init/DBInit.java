@@ -2,8 +2,12 @@ package com.ngfrt.appmain.init;
 
 import com.ngfrt.appmain.model.entity.Hall;
 import com.ngfrt.appmain.model.entity.User;
+import com.ngfrt.appmain.model.entity.UserRoleEntity;
+import com.ngfrt.appmain.model.entity.enums.UserRoleEnum;
+import com.ngfrt.appmain.model.mapper.UserMapper;
 import com.ngfrt.appmain.repository.HallRepository;
 import com.ngfrt.appmain.repository.UserRepository;
+import com.ngfrt.appmain.repository.UserRoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,14 +19,21 @@ import java.util.UUID;
 public class DBInit implements CommandLineRunner {
 
     private final UserRepository userRepository;
-    HallRepository hallRepository;
+    private final HallRepository hallRepository;
+    private final UserRoleRepository userRoleRepository;
 
-    public DBInit(HallRepository hallRepository, UserRepository userRepository) {
+    public DBInit(HallRepository hallRepository, UserRepository userRepository, UserRoleRepository userRoleRepository) {
         this.hallRepository = hallRepository;
         this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
     }
     @Override
     public void run(String... args) throws Exception {
+
+
+        if (userRoleRepository.count() == 0) {
+            initUserRoles();
+        }
 
         if (hallRepository.count() == 0) {
             initHalls();
@@ -36,14 +47,35 @@ public class DBInit implements CommandLineRunner {
     private void initUsers() {
         List<User> users = new ArrayList<>();
 
+        UserRoleEntity adminRole = userRoleRepository.findByRole(UserRoleEnum.ADMIN);
+        UserRoleEntity userRole1 = userRoleRepository.findByRole(UserRoleEnum.USER);
+
+        List<UserRoleEntity> user1Roles = new ArrayList<>();
+        user1Roles.add(adminRole);
+        user1Roles.add(userRole1);
         users.add(new User()
-                .setUuid(UUID.randomUUID())
+                .setUuid(UUID.fromString("94348ab3-ed93-4637-96f8-63412eae5de5"))
                 .setFirstName("admin")
                 .setLastName("admin")
-                .setEmail("mail@example.com")
+                .setEmail("admin@cc.com")
                 .setPhone("9090909009")
-                .setPassword("1234")
+                .setPassword("bbca3b7abfa10ae8af3401e05d900857cb1eacea87dccc0650228fe74f40ae434dbd8bc24411f105a99666543455c3c5")
                 .setActive(true)
+                .setRoles(user1Roles)
+
+        );
+        List<UserRoleEntity> user2Roles = new ArrayList<>();
+        UserRoleEntity userRole2 = userRoleRepository.findByRole(UserRoleEnum.USER);
+        user2Roles.add(userRole2);
+        users.add(new User()
+                .setUuid(UUID.fromString("345edcde-5ae2-4029-9822-b1695829a1b2"))
+                .setFirstName("User")
+                .setLastName("Userov")
+                .setEmail("user@cc.com")
+                .setPhone("9090909009")
+                .setPassword("bbca3b7abfa10ae8af3401e05d900857cb1eacea87dccc0650228fe74f40ae434dbd8bc24411f105a99666543455c3c5")
+                .setActive(true)
+                .setRoles(user2Roles)
 
         );
         userRepository.saveAll(users);
@@ -94,5 +126,10 @@ public class DBInit implements CommandLineRunner {
         );
 
         hallRepository.saveAll(halls);
+    }
+
+    private void initUserRoles() {
+        userRoleRepository.save(new UserRoleEntity().setRole(UserRoleEnum.ADMIN));
+        userRoleRepository.save(new UserRoleEntity().setRole(UserRoleEnum.USER));
     }
 }

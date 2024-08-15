@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +23,11 @@
 
         <div class="ep-header">
             <div class="ep-header-btn">
-                <button class="ep-booknow"
-                        th:onclick="'window.location.href=\'/event/form' + '\';'"> Book Now </button>
+                <button class="ep-booknow" type="button"
+                        th:onclick="'window.location.href=\'/event/form' + '\';'">
+                    <th:block sec:authorize="isAuthenticated()">Book Now</th:block>
+                    <th:block sec:authorize="!isAuthenticated()">Login</th:block>
+                </button>
             </div>
         </div>
 

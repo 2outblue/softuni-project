@@ -59,6 +59,15 @@ public class EventController {
         return ResponseEntity.ok(eventService.getByYearAndMonth(year, month));
     }
 
+    @GetMapping("/{uuid}/buyTicket")
+    public ResponseEntity<EventDTO> buyTicketForEvent(@PathVariable UUID uuid) {
+        EventDTO eventDTO = eventService.buyTicket(uuid);
+        if (eventDTO != null) {
+            return ResponseEntity.ok(eventDTO);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @DeleteMapping("/{uuid}")
     public ResponseEntity<EventDTO> deleteEvent(@PathVariable UUID uuid) {
         Optional<EventDTO> eventDTO = eventService.getEventByUuid(uuid);

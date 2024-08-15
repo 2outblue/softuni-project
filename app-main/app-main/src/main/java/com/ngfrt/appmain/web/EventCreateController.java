@@ -5,6 +5,8 @@ import com.ngfrt.appmain.model.dto.EventDTO;
 import com.ngfrt.appmain.model.dto.HallListingDTO;
 import com.ngfrt.appmain.service.EventService;
 import com.ngfrt.appmain.service.HallService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

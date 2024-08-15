@@ -4,13 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.ngfrt.appmain.model.dto.*;
-import com.ngfrt.appmain.model.entity.User;
 import com.ngfrt.appmain.model.mapper.EventMapper;
 import com.ngfrt.appmain.service.exception.EventNotFoundException;
 import com.ngfrt.appmain.service.exception.EventServiceException;
 import com.ngfrt.appmain.util.email.MailSender;
 import com.ngfrt.appmain.util.gson.LocalDateAdapter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -50,28 +50,35 @@ public class EventService {
         return gson.fromJson(response, new TypeToken<List<EventDTO>>(){}.getType());
     }
 
-    public EventInfoDTO getEventByUuidString(String uuidString) {
+    public EventInfoDTO getEventInfoDTOByUuidString(String uuidString) {
 
-        try {
-            UUID.fromString(uuidString);
-        } catch (IllegalArgumentException ex) {
-            throw new EventNotFoundException("Event with code " + uuidString + " not found. It looks like this is an invalid Event code, please make sure you are providing a correct Event code");
-        }
-        UUID uuid = UUID.fromString(uuidString);
-        HttpEntity<UUID> request = new HttpEntity<>(uuid);
+        EventDTO eventDTO = getEventByUuidString(uuidString);
+        return eventMapper.toEventInfoDTO(eventDTO, hallService);
+//        try {
+//            UUID.fromString(uuidString);
+//        } catch (IllegalArgumentException ex) {
+//            throw new EventNotFoundException("Event with code " + uuidString + " not found. It looks like this is an invalid Event code, please make sure you are providing a correct Event code");
+//        }
+//        UUID uuid = UUID.fromString(uuidString);
+//        HttpEntity<UUID> request = new HttpEntity<>(uuid);
+//
+//        String url = eventServiceUrl + "/" + uuid;
+//        try {
+//            ResponseEntity<EventDTO> response = restTemplate.exchange(url, HttpMethod.GET, request, EventDTO.class);
+//            return eventMapper.toEventInfoDTO(response.getBody(), hallService);
+//
+//        } catch (HttpClientErrorException ex) {
+//            if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+//                throw new EventNotFoundException("Event with code " + uuid + " not found.");
+//            } else {
+//                throw new EventServiceException("Event operation failed", ex.getStatusCode().value());
+//            }
+//        }
+    }
 
-        String url = eventServiceUrl + "/" + uuid;
-        try {
-            ResponseEntity<EventDTO> response = restTemplate.exchange(url, HttpMethod.GET, request, EventDTO.class);
-            return eventMapper.toEventInfoDTO(response.getBody(), hallService);
-
-        } catch (HttpClientErrorException ex) {
-            if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
-                throw new EventNotFoundException("Event with code " + uuid + " not found.");
-            } else {
-                throw new EventServiceException("Event operation failed", ex.getStatusCode().value());
-            }
-        }
+    public EventEditDTO getEventEditDtoByUuidString(String uuidString) {
+        EventDTO eventDTO = getEventByUuidString(uuidString);
+        return eventMapper.toEventEditDTO(eventDTO, hallService);
     }
 
     public List<EventInfoDTO> getFeaturedEvents() {
@@ -122,6 +129,16 @@ public class EventService {
         return false;
     }
 
+    public boolean updateEvent(EventEditDTO eventDTO) {
+        //Event dto comes with these values as null and its not worth creating another dto just for this task
+        String url = eventServiceUrl + "/" + eventDTO.getUuid();
+        String response = restTemplate.postForObject(url, eventDTO, String.class);
+//        if (response == null || response.isEmpty()) {
+//            throw new EventServiceException("Failed to update event", 500);
+//        }
+        return true;
+    }
+
     private String emailBuilder(EventDTO event) {
         //TODO get the hall name from the uuid and send the hall name instead of ID as it is now
         return String.format("Your Event:\n" +
@@ -135,6 +152,29 @@ public class EventService {
                         "Best regards,\n" +
                         "The Cartland Convention Center",
                 event.getName(), event.getDate().toString(), event.getHallId(), event.getUuid());
+    }
+
+    private EventDTO getEventByUuidString(String uuidString) {
+        try {
+            UUID.fromString(uuidString);
+        } catch (IllegalArgumentException ex) {
+            throw new EventNotFoundException("Event with code " + uuidString + " not found. It looks like this is an invalid Event code, please make sure you are providing a correct Event code");
+        }
+        UUID uuid = UUID.fromString(uuidString);
+        HttpEntity<UUID> request = new HttpEntity<>(uuid);
+
+        String url = eventServiceUrl + "/" + uuid;
+        try {
+            ResponseEntity<EventDTO> response = restTemplate.exchange(url, HttpMethod.GET, request, EventDTO.class);
+            return response.getBody();
+
+        } catch (HttpClientErrorException ex) {
+            if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+                throw new EventNotFoundException("Event with code " + uuid + " not found.");
+            } else {
+                throw new EventServiceException("Event operation failed", ex.getStatusCode().value());
+            }
+        }
     }
 
 }

@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
 
+    <script type="text/javascript">
+        function upload(uuid) {
+            window.location.href = '/event/edit?uuid=' + encodeURIComponent(uuid);
+        }
+    </script>
 </head>
 <body>
 
@@ -37,7 +42,9 @@
 
     <div class="booking-list">
         <div th:text="${bookingsSize == 0 ? 'No Bookings Yet' : 'My Bookings'}">My Bookings</div>
-        <div class="booking-container"
+        <form class="booking-container"
+              th:action="@{/event/edit}"
+              th:method="GET"
         th:each="event: ${bookings}">
             <div class="booking-content">
                 <div th:text="${'Event Date: ' + event.getDateString()}">Event Date: </div>
@@ -48,9 +55,11 @@
                 <div th:text="${'Organizer Phone: ' + event.getPhoneNumber()}">Organizer Phone: </div>
                 <div th:text="${'Tickets: ' + event.getTickets()}">Tickets: </div>
                 <div th:text="${'Hall Name: ' + event.getHallName()}">Hall Name: </div>
-                <button class="mb-btn">Edit</button>
+                <input type="hidden" name="uuid" th:value="${event.getUuid()}">
+                <button  type="submit" class="mb-btn"
+                        >Edit</button>
             </div>
-        </div>
+        </form>
     </div>
 
     <footer class="site-footer">

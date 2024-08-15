@@ -17,6 +17,7 @@ public class TicketDTO {
     private String cardCode;
     private String hallName;
     private UUID hallUuid;
+    private UUID eventUuid;
 
 
     public String getDateString() {
@@ -107,6 +108,15 @@ public class TicketDTO {
 
     public TicketDTO setHallUuid(UUID hallUuid) {
         this.hallUuid = hallUuid;
+        return this;
+    }
+
+    public UUID getEventUuid() {
+        return eventUuid;
+    }
+
+    public TicketDTO setEventUuid(UUID eventUuid) {
+        this.eventUuid = eventUuid;
         return this;
     }
 }

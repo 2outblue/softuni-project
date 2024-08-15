@@ -1,12 +1,15 @@
 package com.ngfrt.appmain.service;
 
+import com.ngfrt.appmain.model.dto.EventDTO;
 import com.ngfrt.appmain.model.dto.TicketDTO;
 import com.ngfrt.appmain.model.entity.Ticket;
 import com.ngfrt.appmain.model.mapper.TicketMapper;
 import com.ngfrt.appmain.repository.HallRepository;
 import com.ngfrt.appmain.repository.TicketRepository;
 import com.ngfrt.appmain.util.email.MailSender;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.UUID;
 
@@ -17,15 +20,25 @@ public class TicketService {
     private final TicketMapper ticketMapper;
     private final HallRepository hallRepository;
     private final MailSender mailSender;
+    private final String eventServiceUrl;
+    private final RestTemplate restTemplate;
 
-    public TicketService(TicketRepository ticketRepository, TicketMapper ticketMapper, HallRepository hallRepository, MailSender mailSender) {
+    public TicketService(TicketRepository ticketRepository,
+                         TicketMapper ticketMapper,
+                         HallRepository hallRepository,
+                         MailSender mailSender,
+                         @Value("${api.event.service.url}") String eventServiceUr, RestTemplate restTemplate) {
         this.ticketRepository = ticketRepository;
         this.ticketMapper = ticketMapper;
         this.hallRepository = hallRepository;
         this.mailSender = mailSender;
+        this.eventServiceUrl = eventServiceUr;
+        this.restTemplate = restTemplate;
     }
 
-    public void saveTicketAndSendEmail(TicketDTO ticketDTO) {
+    public void saveTicketAndSendEmail(TicketDTO ticketDTO, UUID eventUuid) {
+
+        updateTicketNumber(eventUuid);
         Ticket ticketEntity = ticketMapper.toEntity(ticketDTO, hallRepository);
         ticketEntity.setUuid(UUID.randomUUID());
         //TODO - maybe implement a check if entity was saved - if not throw exception ?
@@ -48,5 +61,10 @@ public class TicketService {
                 "Best regards,\n" +
                 "The Cartland Convention Center",
                 ticket.getEventName(), ticket.getEventDate().toString(), ticket.getHallName(), ticketUuid.toString());
+    }
+
+    private void updateTicketNumber(UUID uuid) {
+        String url = eventServiceUrl + "/" + uuid + "/buyTicket";
+        restTemplate.getForObject(url, EventDTO.class);
     }
 }

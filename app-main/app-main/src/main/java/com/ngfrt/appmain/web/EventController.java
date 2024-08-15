@@ -44,7 +44,7 @@ public class EventController {
     @GetMapping("/search")
     public ModelAndView searchEvent(@RequestParam(required = false) String eventCode,
                                     Model model) {
-        EventInfoDTO eventInfo = eventService.getEventByUuidString(eventCode);
+        EventInfoDTO eventInfo = eventService.getEventInfoDTOByUuidString(eventCode);
         model.addAttribute("event", eventInfo);
 
         return new ModelAndView("event-details");
@@ -53,10 +53,11 @@ public class EventController {
     @GetMapping("/purchase")
     public ModelAndView buyTicketForm(@RequestParam(required = false) String eventCode, Model model) {
 
-        EventInfoDTO eventInfo = eventService.getEventByUuidString(eventCode);
+        EventInfoDTO eventInfo = eventService.getEventInfoDTOByUuidString(eventCode);
         if (eventInfo.isSoldOut()) {
             throw new EventNotFoundException("This event is sold out!");
         }
+
         TicketDTO ticketDTO = new TicketDTO()
                 .setEventDate(eventInfo.getDate())
                 .setEventName(eventInfo.getName())
@@ -68,4 +69,21 @@ public class EventController {
         return new ModelAndView("buy-ticket");
     }
 
+    @GetMapping("/edit")
+    public ModelAndView editEvent(@RequestParam("uuid") String uuid,
+                                  Model model) {
+        EventEditDTO eventDTO = eventService.getEventEditDtoByUuidString(uuid);
+        model.addAttribute("eventDTO", eventDTO);
+        return new ModelAndView("edit-booking");
+    }
+
+    @PostMapping("/edit")
+    public ModelAndView editEvent(@ModelAttribute("eventDTO") EventEditDTO eventEditDTO,
+                                  Model model) {
+        eventService.updateEvent(eventEditDTO);
+        EventEditDTO eventDTO = eventService.getEventEditDtoByUuidString(eventEditDTO.getUuid().toString());
+
+        model.addAttribute("eventDTO", eventDTO);
+        return new ModelAndView("edit-booking");
+    }
 }

@@ -134,6 +134,7 @@
             <input type="hidden" th:field="*{hallName}">
             <input type="hidden" name="eventName" th:field="*{eventName}">
             <input type="hidden" name="hallUuid" th:field="*{hallUuid}">
+            <input type="hidden" name="eventUuid" th:value="${event.getUuid()}">
             <div class="form-group">
                 <label for="firstName">First Name:</label>
                 <input required type="text" id="firstName" th:name="firstName" th:field="*{firstName}"

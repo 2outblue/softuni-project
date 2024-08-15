@@ -4,22 +4,12 @@ public class UpdateEventDTO {
 
 
     //TODO - perhaps add ability to change date, which will be possible only with Admin privileges?
-    private String description;
     private String name;
+    private String description;
 
-    private Integer tickets;
-    private boolean featured;
+    private String organizer;
     private String phoneNumber;
-    private boolean soldOut;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public UpdateEventDTO setDescription(String description) {
-        this.description = description;
-        return this;
-    }
 
     public String getName() {
         return name;
@@ -30,22 +20,21 @@ public class UpdateEventDTO {
         return this;
     }
 
-
-    public Integer getTickets() {
-        return tickets;
+    public String getDescription() {
+        return description;
     }
 
-    public UpdateEventDTO setTickets(Integer tickets) {
-        this.tickets = tickets;
+    public UpdateEventDTO setDescription(String description) {
+        this.description = description;
         return this;
     }
 
-    public boolean isFeatured() {
-        return featured;
+    public String getOrganizer() {
+        return organizer;
     }
 
-    public UpdateEventDTO setFeatured(boolean featured) {
-        this.featured = featured;
+    public UpdateEventDTO setOrganizer(String organizer) {
+        this.organizer = organizer;
         return this;
     }
 
@@ -55,15 +44,6 @@ public class UpdateEventDTO {
 
     public UpdateEventDTO setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public boolean isSoldOut() {
-        return soldOut;
-    }
-
-    public UpdateEventDTO setSoldOut(boolean soldOut) {
-        this.soldOut = soldOut;
         return this;
     }
 }

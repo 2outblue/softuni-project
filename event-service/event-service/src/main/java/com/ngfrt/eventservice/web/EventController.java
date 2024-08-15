@@ -91,15 +91,13 @@ public class EventController {
         ).body(eventService.getEventByUuid(newEventUuid).orElse(null));
     }
 
-    @PatchMapping("/{uuid}")
-    public ResponseEntity<UpdateEventDTO> updateEvent(
+    @PostMapping("/{uuid}")
+    public ResponseEntity<EventDTO> updateEvent(
             @RequestBody UpdateEventDTO updateEventDTO,
             @PathVariable UUID uuid) {
 
-        boolean updated = eventService.updateEvent(updateEventDTO, uuid);
+        EventDTO eventDTO = eventService.updateEvent(updateEventDTO, uuid);
 
-        return updated ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
-
+        return ResponseEntity.ok(eventDTO);
     }
-
 }

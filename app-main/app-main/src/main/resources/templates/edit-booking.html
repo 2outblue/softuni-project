@@ -47,33 +47,23 @@
 
     <div class="u-main-container">
             <form class="u-edit-container"
-                  th:action="@{/account/edit}"
+                  th:action="@{/event/edit}"
                   th:method="POST"
-                  th:object="${userDTO}">
-            
-                  <div class="u-input">
-                    <label for="date" class="input-label">
-                        Date 
-                      </label>
-                      <input 
-                             type="text"
-                             th:name="date"
-                             th:field="*{date}"
-                            id="date"
-                            class="input-field"
-                      />
+                  th:object="${eventDTO}">
+                <input type="hidden" name="uuid" th:value="${eventDTO.getUuid()}">
+                <input type="hidden" name="date" th:value="${eventDTO.getDate()}">
+                <input type="hidden" name="hallName" th:value="${eventDTO.getHallName()}">
+                <div class="u-input">
+                    <label class="input-label">
+                        Hall
+                    </label>
+                    <div th:text="${eventDTO.getDateString()}"></div>
                 </div>
-                <div class="u-input e-code">
-                    <label for="uuid" class="input-label">
+                <div class="u-input">
+                    <label class="input-label">
                         Event Code
-                      </label>
-                      <input 
-                             type="text"
-                             th:name="uuid"
-                             th:field="*{uuid}"
-                            id="uuid"
-                            class="input-field"
-                      />
+                    </label>
+                    <div th:text="*{hallName}"></div>
                 </div>
                 <div class="u-input">
                     <label for="name" class="input-label">
@@ -96,7 +86,6 @@
                              th:name="description"
                              th:field="*{description}"
                             id="description"
-                            class="input-field"
                       ></textarea>
                 </div>
                 <div class="u-input">
@@ -124,7 +113,7 @@
                     />
                 </div>
                 <div class="u-input">
-                    <label for="hallName" class="input-label">
+                    <label class="input-label">
                         Hall
                     </label>
                     <div th:text="*{hallName}"></div>

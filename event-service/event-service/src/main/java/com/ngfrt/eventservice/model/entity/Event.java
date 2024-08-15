@@ -23,6 +23,7 @@ public class Event {
     private int tickets;
     private boolean featured;
     private String phoneNumber;
+    private String organizer;
     @JdbcTypeCode(Types.VARCHAR)
     private UUID hallId;
     @JdbcTypeCode(Types.VARCHAR)
@@ -90,6 +91,15 @@ public class Event {
 
     public Event setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    public String getOrganizer() {
+        return organizer;
+    }
+
+    public Event setOrganizer(String organizer) {
+        this.organizer = organizer;
         return this;
     }
 

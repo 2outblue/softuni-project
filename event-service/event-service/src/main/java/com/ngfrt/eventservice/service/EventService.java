@@ -55,15 +55,17 @@ public class EventService {
         return event.getUuid();
     }
 
-    public boolean updateEvent(UpdateEventDTO updateEventDTO, UUID uuid) {
+    public EventDTO updateEvent(UpdateEventDTO updateEventDTO, UUID uuid) {
         Optional<Event> eventEntity = eventRepository.findByUuid(uuid);
         if (eventEntity.isEmpty()) {
-            return false;
+            return null;
         }
 
         Event updatedEvent = eventMapper.updateEntityFromDTO(eventEntity.get(), updateEventDTO);
         eventRepository.save(updatedEvent);
-        return true;
+
+        Optional<Event> eventToReturn = eventRepository.findByUuid(updatedEvent.getUuid());
+        return eventToReturn.map(eventMapper::toDto).orElse(null);
     }
 
 

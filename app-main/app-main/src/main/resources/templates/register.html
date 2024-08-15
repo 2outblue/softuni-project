@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="\static\css\bootstrap.min.css" />
     <link rel="stylesheet" href="\static\css\reset.css" />
     <link rel="stylesheet" href="\static\css\navbar.css" />
     <link rel="stylesheet" href="\static\css\register.css" />
 
-    <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/register.css" />
     <title>Register</title>
@@ -45,6 +47,9 @@
                       id="firstname"
                       class="input-field"
                 />
+                <small class="bg-danger text-light rounded"
+                th:if="${#fields.hasErrors('firstName')}"
+                th:errors="*{firstName}">Error Message</small>
               </div>
               <div>
                 <label for="lastname" class="input-label"> Last name </label>
@@ -55,6 +60,9 @@
                   id="lastname"
                   class="input-field"
                 />
+                <small class="bg-danger text-light rounded"
+                       th:if="${#fields.hasErrors('firstName')}"
+                       th:errors="*{firstName}">Error Message</small>
               </div>
             </div>
       
@@ -68,6 +76,9 @@
                   id="email"
                   class="input-field"
                 />
+                <small class="bg-danger text-light rounded"
+                       th:if="${#fields.hasErrors('firstName')}"
+                       th:errors="*{firstName}">Error Message</small>
               </div>
               <div>
                 <label for="phone" class="input-label"> Phone number </label>
@@ -78,6 +89,9 @@
                   id="phone"
                   class="input-field"
                 />
+                <small class="bg-danger text-light rounded"
+                       th:if="${#fields.hasErrors('firstName')}"
+                       th:errors="*{firstName}">Error Message</small>
               </div>
             </div>
       
@@ -92,6 +106,9 @@
                 id="password"
                 class="input-field"
               />
+              <small class="bg-danger text-light rounded"
+                     th:if="${#fields.hasErrors('firstName')}"
+                     th:errors="*{firstName}">Error Message</small>
             </div>
       
             <div class="input-wide">
@@ -105,6 +122,9 @@
                 id="confirmPassword"
                 class="input-field"
               />
+              <small class="bg-danger text-light rounded"
+                     th:if="${#fields.hasErrors('firstName')}"
+                     th:errors="*{firstName}">Error Message</small>
             </div>
 
             <button class="submit-btn">Register Now</button>

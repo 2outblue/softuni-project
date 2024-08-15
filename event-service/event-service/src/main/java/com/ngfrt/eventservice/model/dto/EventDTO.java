@@ -9,6 +9,7 @@ public class EventDTO {
     private String description;
     private String name;
     private LocalDate date;
+    private String organizer;
     private int tickets;
     private boolean featured;
     private String phoneNumber;
@@ -49,6 +50,15 @@ public class EventDTO {
 
     public EventDTO setDate(LocalDate date) {
         this.date = date;
+        return this;
+    }
+
+    public String getOrganizer() {
+        return organizer;
+    }
+
+    public EventDTO setOrganizer(String organizer) {
+        this.organizer = organizer;
         return this;
     }
 

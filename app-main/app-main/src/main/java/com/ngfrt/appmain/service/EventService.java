@@ -10,7 +10,6 @@ import com.ngfrt.appmain.service.exception.EventServiceException;
 import com.ngfrt.appmain.util.email.MailSender;
 import com.ngfrt.appmain.util.gson.LocalDateAdapter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -54,26 +53,6 @@ public class EventService {
 
         EventDTO eventDTO = getEventByUuidString(uuidString);
         return eventMapper.toEventInfoDTO(eventDTO, hallService);
-//        try {
-//            UUID.fromString(uuidString);
-//        } catch (IllegalArgumentException ex) {
-//            throw new EventNotFoundException("Event with code " + uuidString + " not found. It looks like this is an invalid Event code, please make sure you are providing a correct Event code");
-//        }
-//        UUID uuid = UUID.fromString(uuidString);
-//        HttpEntity<UUID> request = new HttpEntity<>(uuid);
-//
-//        String url = eventServiceUrl + "/" + uuid;
-//        try {
-//            ResponseEntity<EventDTO> response = restTemplate.exchange(url, HttpMethod.GET, request, EventDTO.class);
-//            return eventMapper.toEventInfoDTO(response.getBody(), hallService);
-//
-//        } catch (HttpClientErrorException ex) {
-//            if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
-//                throw new EventNotFoundException("Event with code " + uuid + " not found.");
-//            } else {
-//                throw new EventServiceException("Event operation failed", ex.getStatusCode().value());
-//            }
-//        }
     }
 
     public EventEditDTO getEventEditDtoByUuidString(String uuidString) {

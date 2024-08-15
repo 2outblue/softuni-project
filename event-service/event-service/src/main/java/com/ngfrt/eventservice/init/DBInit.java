@@ -32,6 +32,7 @@ public class DBInit implements CommandLineRunner {
         List<Event> events = new ArrayList<>();
         String[] hallUuids = {"13752743-5291-4ba3-8321-09c5b4dbe79f", "94348ab3-ed93-4637-96f8-63412eae5de5", "0895c4b1-321d-43ff-af83-633e8b88dddd", "5a3ba439-29ff-41fc-8ad7-3a6650c64831", "345edcde-5ae2-4029-9822-b1695829a1b2"};
         String[] eventUuids = {"13752743-5291-4ba3-8321-09c5b4dbe79f", "94348ab3-ed93-4637-96f8-63412eae5de5", "0895c4b1-321d-43ff-af83-633e8b88dddd", "5a3ba439-29ff-41fc-8ad7-3a6650c64831", "345edcde-5ae2-4029-9822-b1695829a1b2"};
+        String[] userUuids = {"13752743-5291-4ba3-8321-09c5b4dbe79f", "94348ab3-ed93-4637-96f8-63412eae5de5", "0895c4b1-321d-43ff-af83-633e8b88dddd", "5a3ba439-29ff-41fc-8ad7-3a6650c64831", "345edcde-5ae2-4029-9822-b1695829a1b2"};
         String[] eventOrganizers = {"FIDE", "Apex Industries", "South Johnson Football Team", "John Petrov", "Michal Stevens Corporation"};
         boolean[] featuredArr = {false, false, false, true, true};
         boolean[] soldOUtArr = {false, false, false, false, true};
@@ -47,7 +48,7 @@ public class DBInit implements CommandLineRunner {
                     .setFeatured(featuredArr[i -1])
                     .setPhoneNumber(Integer.toString((i * 100) + (i * 10)) + i + "00000")
                     .setHallId(UUID.fromString(hallUuids[i - 1]))
-                    .setUserId(UUID.randomUUID())
+                    .setUserId(UUID.fromString(userUuids[i -1]))
                     .setSoldOut(soldOUtArr[i-1])
             );
         }

@@ -31,6 +31,8 @@ public class CalendarController {
         this.hallService = hallService;
     }
 
+    //This handles the 'Select' button for year and month on the calendar page - it will keep the event
+    // data while the user can select different year and month to generate the calendar for.
     @GetMapping("/calendar/book")
     public String getMonthCalendar(@RequestParam(required = false) Integer year,
                                    @RequestParam(required = false) Integer monthValue,
@@ -55,6 +57,7 @@ public class CalendarController {
         return "calendar";
     }
 
+    //This handles the first load of the calendar (and redirects if there were errors in the event booking form)
     @PostMapping("/calendar/book")
     public String postMonthCalendar(@RequestParam(required = false) Integer year,
                                    @RequestParam(required = false) Integer monthValue,
@@ -68,7 +71,6 @@ public class CalendarController {
             rAtt.addFlashAttribute("org.springframework.validation.BindingResult.event", bindingResult);
             return "redirect:/event/form";
         }
-
 
         if (year == null) {
             year = Year.now().getValue();
@@ -88,6 +90,7 @@ public class CalendarController {
         return "calendar";
     }
 
+    // TODO is this even used?
     @GetMapping("/calendar")
     public String chooseEventDate(EventDTO eventDTO,
                                   Model model) {

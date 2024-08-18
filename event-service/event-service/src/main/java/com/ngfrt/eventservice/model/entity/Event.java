@@ -17,12 +17,18 @@ public class Event {
 
     @JdbcTypeCode(Types.VARCHAR)
     private UUID uuid;
+
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private String name;
     private LocalDate date;
+
     private int tickets;
     private boolean featured;
+    @Column(nullable = false)
     private String phoneNumber;
+    @Column(nullable = false)
     private String organizer;
     @JdbcTypeCode(Types.VARCHAR)
     private UUID hallId;

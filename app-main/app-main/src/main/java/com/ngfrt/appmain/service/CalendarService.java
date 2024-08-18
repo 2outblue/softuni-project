@@ -82,15 +82,11 @@ public class CalendarService {
             weeks.add(week);
             week = new ArrayList<>();
         }
-
         // Now we start from the first sunday of the input month (second row if the month doesn't start with a sunday)
         LocalDate current = firstDayOfMonth.with(java.time.DayOfWeek.SUNDAY);
 
         // go through all days of the month
         while (!current.isAfter(lastDayOfMonth)) {
-            // TODO: implement filtering logic for event info
-
-
             // Disable days if they are in the past
             boolean disabled = false;
             if (((current.getDayOfMonth() <= LocalDate.now().getDayOfMonth() && yearMonthInput.getMonthValue() <= LocalDate.now().getMonthValue())  ||
@@ -132,7 +128,7 @@ public class CalendarService {
 
     // Creates a day and checks if any of the existing events for the selected month match the DATE and HALL of the provided
     //  day of the month (int currentDay) - if there is an event on this date in the same hall - this day is disabled and
-    //  the name of the event is displayed in this cell. Probably a better way to do this, but it works for now.
+    //  the name of the event is displayed in this cell.
     private Day createDay(List<EventCalendarDTO> events, int currentDay, boolean disabled, UUID eventHallUuid) {
         Day d = new Day(currentDay, disabled);
         if (events != null && !events.isEmpty()) {

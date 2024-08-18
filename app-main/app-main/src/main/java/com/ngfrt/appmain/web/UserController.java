@@ -5,15 +5,17 @@ import com.ngfrt.appmain.model.dto.UserAccountDTO;
 import com.ngfrt.appmain.service.EventService;
 import com.ngfrt.appmain.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -41,17 +43,27 @@ public class UserController {
     public ModelAndView getEditUserAccountForm(@AuthenticationPrincipal User principal,
                                         Model model) {
 
-        UserAccountDTO userAccountDTO = userService.getUserAccountInfo(principal.getUsername());
-        model.addAttribute("userDTO", userAccountDTO);
-
+        if (!model.containsAttribute("userDTO")) {
+            UserAccountDTO userAccountDTO = userService.getUserAccountInfo(principal.getUsername());
+            model.addAttribute("userDTO", userAccountDTO);
+        }
         return new ModelAndView("edit-account");
     }
 
     @PostMapping("/edit")
-    public ModelAndView editUserAccount(HttpServletRequest request,
-                                        @ModelAttribute("userDTO") UserAccountDTO userAccountDTO,
+    public ModelAndView editUserAccount(@Valid UserAccountDTO userAccountDTO,
+                                        BindingResult bindingResult,
+                                        RedirectAttributes rAtt,
                                         @AuthenticationPrincipal User principal,
-                                        Model model) {
+                                        Model model,
+                                        HttpServletRequest request) {
+
+        if (bindingResult.hasErrors()) {
+            rAtt.addFlashAttribute("userDTO", userAccountDTO);
+            rAtt.addFlashAttribute("org.springframework.validation.BindingResult.userDTO", bindingResult);
+            return new ModelAndView("redirect:/account/edit");
+        }
+
         boolean emailChanged = userService.editUser(userAccountDTO, principal.getUsername(), request);
         if (emailChanged) {
             request.getSession().invalidate();

@@ -8,8 +8,6 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class BaseEntity {
-
-    //should the uuids be the @Id ?
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

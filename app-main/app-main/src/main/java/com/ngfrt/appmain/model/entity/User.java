@@ -12,12 +12,18 @@ import java.util.UUID;
 @Entity(name = "users")
 public class User extends BaseEntity{
 
+    @Column(nullable = false)
     @JdbcTypeCode(Types.VARCHAR)
     private UUID uuid;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String phone;
     private boolean active;
 

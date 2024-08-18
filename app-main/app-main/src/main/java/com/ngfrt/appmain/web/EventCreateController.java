@@ -70,7 +70,7 @@ public class EventCreateController {
                                        @AuthenticationPrincipal User principal) {
 
         eventDTO.setUserId(userService.getUserUuidByEmail(principal.getUsername()));
-        String newEventUri = eventService.createNewEvent(eventDTO);
+        String newEventUri = eventService.createNewEvent(eventDTO, principal.getUsername());
 
         return new ModelAndView("event-created");
     }

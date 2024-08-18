@@ -33,11 +33,6 @@ public class EventControllerIntegrationTest {
                 .orElse(null);
     }
 
-//    @AfterEach
-//    public void destroy() {
-//        this.repository.deleteAll();
-//    }
-
     @Test
     public void testDBInit() {
         assertEquals("Event @ 1 @ Name", this.testEvent.getName());

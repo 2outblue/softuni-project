@@ -3,7 +3,6 @@ package com.ngfrt.appmain.model.dto;
 import java.util.UUID;
 
 public class HallDTO {
-
     private UUID uuid;
     private String name;
     private Integer number;

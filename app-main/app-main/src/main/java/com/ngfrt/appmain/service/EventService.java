@@ -89,7 +89,7 @@ public class EventService {
     }
 
 
-    public String createNewEvent(EventDTO event) {
+    public String createNewEvent(EventDTO event, String emailAddress) {
         HttpEntity<EventDTO> request = new HttpEntity<>(event);
         ResponseEntity<EventDTO> response = restTemplate.exchange(eventServiceUrl, HttpMethod.POST, request, EventDTO.class);
 
@@ -98,39 +98,36 @@ public class EventService {
         if (!response.getStatusCode().is2xxSuccessful() || response.getHeaders().getLocation() == null || response.getBody() == null) {
             throw new EventServiceException("Failed event operation", response.getStatusCode().value());
         }
-        sendNewEventEmail(response.getBody());
+        sendNewEventEmail(response.getBody(), emailAddress);
 
         return response.getHeaders().getLocation().toString();
     }
 
-    private boolean sendNewEventEmail(EventDTO event) {
-        //TODO - Get the user email address from the user uuid and send email to it.
-        return false;
+    private void sendNewEventEmail(EventDTO event, String emailAddress) {
+
+        String emailBody = emailBuilder(event);
+        mailSender.sendMail(emailAddress, "Your new Event Booking at Cartland Center", emailBody);
     }
 
     public boolean updateEvent(EventEditDTO eventDTO) {
         //Event dto comes with these values as null and its not worth creating another dto just for this task
         String url = eventServiceUrl + "/" + eventDTO.getUuid();
         String response = restTemplate.postForObject(url, eventDTO, String.class);
-//        if (response == null || response.isEmpty()) {
-//            throw new EventServiceException("Failed to update event", 500);
-//        }
         return true;
     }
 
     private String emailBuilder(EventDTO event) {
-        //TODO get the hall name from the uuid and send the hall name instead of ID as it is now
         return String.format("Your Event:\n" +
                         "Event name: %s\n" +
-                        "Date: %s\n" +
-                        "Hall: %s\n" +
+                        "Date: %s\n\n" +
+                        "Description: \n %s\n\n" +
                         "Event Code (Supply this code to the attendees if your event is not public, or call the below number to make a group ticket booking): \n%s\n" +
                         "Group tickets number: +0700091280\n\n\n" +
                         "Contact our Logistics team at +0700090080 if you need to bring in large decor/exhibition pieces\n" +
                         "In case of any issues you can contact us at support@cartlandcc.support.com or +0700091080\n\n\n" +
                         "Best regards,\n" +
                         "The Cartland Convention Center",
-                event.getName(), event.getDate().toString(), event.getHallId(), event.getUuid());
+                event.getName(), event.getDate().toString(), event.getDescription(), event.getUuid());
     }
 
     private EventDTO getEventByUuidString(String uuidString) {

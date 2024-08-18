@@ -1,5 +1,6 @@
 package com.ngfrt.appmain.model.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import org.hibernate.annotations.JdbcTypeCode;
 
@@ -11,8 +12,11 @@ public class Hall extends BaseEntity{
 
     @JdbcTypeCode(Types.VARCHAR)
     private UUID uuid;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private Integer number;
+    @Column(nullable = false)
     private Integer capacity;
 
     @JdbcTypeCode(Types.LONGVARCHAR)
